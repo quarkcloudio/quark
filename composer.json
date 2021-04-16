@@ -1,0 +1,30 @@
+{
+    "name": "quarkcms/quark",
+    "description": "quark core lib",
+    "keywords": [
+        "quark-admin",
+        "laravel",
+        "laravel-admin",
+        "sdk"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "tangtanglove",
+            "email": "dai_hang_love@126.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "gregwar/captcha": "^1.0",
+        "guzzlehttp/guzzle": "^6.2|^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "QuarkCMS\\Quark\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
