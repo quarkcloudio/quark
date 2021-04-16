@@ -26,4 +26,4 @@ composer require quarkcms/quark
 相关教程，你可以查看 [在线文档](http://www.quarkcms.com/quark/)
 
 ## License
-QuarkAdmin is licensed under The MIT License (MIT).
+Quark is licensed under The MIT License (MIT).

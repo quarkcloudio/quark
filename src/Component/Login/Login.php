@@ -21,6 +21,19 @@ class Login extends Element
     public $redirect = '';
 
     /**
+     * 初始化容器
+     *
+     * @param  void
+     * @return object
+     */
+    public function __construct()
+    {
+        $this->type = 'login';
+
+        return $this;
+    }
+
+    /**
      * 设置登录接口
      *
      * @param  bool  $api
