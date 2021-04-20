@@ -13,6 +13,7 @@ class Facade
      */
     protected static $registerComponents = [
         'card' => \QuarkCMS\Quark\Component\Card\Card::class,
+        'layout' => \QuarkCMS\Quark\Component\Layout\Layout::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
     ];
 

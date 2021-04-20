@@ -1,8 +1,8 @@
 <?php
 
-namespace QuarkCMS\Quark\Components\Layout;
+namespace QuarkCMS\Quark\Component\Layout;
 
-use QuarkCMS\Quark\Components\Element;
+use QuarkCMS\Quark\Component\Element;
 
 class Layout extends Element
 {
