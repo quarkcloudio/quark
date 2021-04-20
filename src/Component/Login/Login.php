@@ -21,6 +21,41 @@ class Login extends Element
     public $redirect = '';
 
     /**
+     * 标题
+     *
+     * @var string
+     */
+    public $title = '';
+
+    /**
+     * 描述
+     *
+     * @var string
+     */
+    public $description = '';
+
+    /**
+     * 验证码链接
+     *
+     * @var string
+     */
+    public $captchaUrl = '';
+
+    /**
+     * 页脚版权信息
+     *
+     * @var string
+     */
+    public $copyright = '';
+
+    /**
+     * 页脚友情链接
+     *
+     * @var array
+     */
+    public $links = null;
+
+    /**
      * 初始化容器
      *
      * @param  void
@@ -47,6 +82,84 @@ class Login extends Element
     }
 
     /**
+     * 登录成功后跳转地址
+     *
+     * @param  string  $redirect
+     * @return $this
+     */
+    public function redirect($redirect)
+    {
+        $this->redirect = $redirect;
+
+        return $this;
+    }
+
+    /**
+     * 标题
+     *
+     * @param  string  $title
+     * @return $this
+     */
+    public function title($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * 描述
+     *
+     * @param  string  $description
+     * @return $this
+     */
+    public function description($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * 验证码链接
+     *
+     * @param  string  $url
+     * @return $this
+     */
+    public function captchaUrl($url)
+    {
+        $this->captchaUrl = $url;
+
+        return $this;
+    }
+
+    /**
+     * 页脚版权信息
+     *
+     * @param  string  $copyright
+     * @return $this
+     */
+    public function copyright($copyright)
+    {
+        $this->copyright = $copyright;
+
+        return $this;
+    }
+
+    /**
+     * 页脚友情链接
+     *
+     * @param  string  $links
+     * @return $this
+     */
+    public function links($links)
+    {
+        $this->links = $links;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -57,7 +170,12 @@ class Login extends Element
 
         return array_merge([
             'api' => $this->api,
-            'redirect' => $this->redirect
+            'redirect' => $this->redirect,
+            'title' => $this->title,
+            'description' => $this->description,
+            'captchaUrl' => $this->captchaUrl,
+            'copyright' => $this->copyright,
+            'links' => $this->links
         ], parent::jsonSerialize());
     }
 }

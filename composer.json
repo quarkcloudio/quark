@@ -2,9 +2,8 @@
     "name": "quarkcms/quark",
     "description": "quark core lib",
     "keywords": [
+        "quark",
         "quark-admin",
-        "laravel",
-        "laravel-admin",
         "sdk"
     ],
     "license": "MIT",
@@ -16,13 +15,19 @@
     ],
     "require": {
         "php": ">=7.2",
-        "gregwar/captcha": "^1.0",
         "guzzlehttp/guzzle": "^6.2|^7.0"
     },
     "autoload": {
         "psr-4": {
             "QuarkCMS\\Quark\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": "QuarkCMS\\Quark\\Console\\InstallCommand::handle",
+        "post-update-cmd": "QuarkCMS\\Quark\\Console\\UpdateCommand::handle"
     },
     "config": {
         "sort-packages": true
