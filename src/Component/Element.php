@@ -101,4 +101,14 @@ abstract class Element implements JsonSerializable
             'style' => $this->style
         ]);
     }
+
+    /**
+     * 转换为数组
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->jsonSerialize();
+    }
 }
