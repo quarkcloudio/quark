@@ -12,8 +12,14 @@ class Facade
      * @var array
      */
     protected static $registerComponents = [
-        'card' => \QuarkCMS\Quark\Component\Card\Card::class,
+        'page' => \QuarkCMS\Quark\Component\Layout\Page::class,
+        'pageContainer' => \QuarkCMS\Quark\Component\Layout\PageContainer::class,
         'layout' => \QuarkCMS\Quark\Component\Layout\Layout::class,
+        'row' => \QuarkCMS\Quark\Component\Grid\Row::class,
+        'col' => \QuarkCMS\Quark\Component\Grid\Col::class,
+        'card' => \QuarkCMS\Quark\Component\Card\Card::class,
+        'statistic' => \QuarkCMS\Quark\Component\Statistic\Statistic::class,
+        'statisticCard' => \QuarkCMS\Quark\Component\Statistic\StatisticCard::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
     ];
 

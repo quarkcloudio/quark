@@ -7,6 +7,13 @@ use QuarkCMS\Quark\Component\Element;
 class Layout extends Element
 {
     /**
+     * 是否缓存layout
+     *
+     * @var bool
+     */
+    public $cache = false;
+
+    /**
      * layout 的左上角 的 title
      *
      * @var string
@@ -126,6 +133,13 @@ class Layout extends Element
      * @var bool
      */
     public $collapsed = false;
+
+    /**
+     * 菜单
+     *
+     * @var array
+     */
+    public $menu = null;
 
     /**
      * 内容
@@ -403,6 +417,19 @@ class Layout extends Element
     }
 
     /**
+     * 菜单
+     *
+     * @param  array  $menu
+     * @return $this
+     */
+    public function menu($menu)
+    {
+        $this->menu = $menu;
+
+        return $this;
+    }
+
+    /**
      * 内容
      *
      * @param  bool  $body
@@ -425,6 +452,7 @@ class Layout extends Element
         $this->key(__CLASS__.$this->title);
 
         return array_merge([
+            'cache' => $this->cache,
             'title' => $this->title,
             'logo' => $this->logo,
             'loading' => $this->loading,
@@ -438,6 +466,7 @@ class Layout extends Element
             'locale' => $this->locale,
             'siderWidth' => $this->siderWidth,
             'splitMenus' => $this->splitMenus,
+            'menu' => $this->menu,
             'body' => $this->body
         ], parent::jsonSerialize());
     }
