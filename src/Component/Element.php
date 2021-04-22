@@ -89,6 +89,26 @@ abstract class Element implements JsonSerializable
     }
 
     /**
+     * 转换为数组
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->jsonSerialize();
+    }
+
+    /**
+     * 转换为数组
+     *
+     * @return array
+     */
+    public function render()
+    {
+        return $this->jsonSerialize();
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -100,15 +120,5 @@ abstract class Element implements JsonSerializable
             'type' => $this->type(),
             'style' => $this->style
         ]);
-    }
-
-    /**
-     * 转换为数组
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        return $this->jsonSerialize();
     }
 }

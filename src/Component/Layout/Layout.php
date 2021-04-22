@@ -11,7 +11,7 @@ class Layout extends Element
      *
      * @var bool
      */
-    public $cache = false;
+    public $cache = true;
 
     /**
      * layout 的左上角 的 title

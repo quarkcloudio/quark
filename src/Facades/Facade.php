@@ -20,6 +20,7 @@ class Facade
         'card' => \QuarkCMS\Quark\Component\Card\Card::class,
         'statistic' => \QuarkCMS\Quark\Component\Statistic\Statistic::class,
         'statisticCard' => \QuarkCMS\Quark\Component\Statistic\StatisticCard::class,
+        'descriptions' => \QuarkCMS\Quark\Component\Descriptions\Descriptions::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
     ];
 
