@@ -21,6 +21,8 @@ class Facade
         'statistic' => \QuarkCMS\Quark\Component\Statistic\Statistic::class,
         'statisticCard' => \QuarkCMS\Quark\Component\Statistic\StatisticCard::class,
         'descriptions' => \QuarkCMS\Quark\Component\Descriptions\Descriptions::class,
+        'table' => \QuarkCMS\Quark\Component\Table\Table::class,
+        'column' => \QuarkCMS\Quark\Component\Table\Column::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
     ];
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin\Components\Table;
+namespace QuarkCMS\Quark\Component\Table;
 
 use Closure;
 use Illuminate\Support\Str;
-use QuarkCMS\QuarkAdmin\Element;
+use QuarkCMS\Quark\Component\Element;
 
 /**
  * Class Column.
