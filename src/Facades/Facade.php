@@ -27,28 +27,6 @@ class Facade
     ];
 
     /**
-     * 组件实例树
-     *
-     * @var array
-     */
-    protected static $componentInstance;
-
-    /**
-     * 设置组件实例
-     *
-     * @param  object|string  $name
-     * @return mixed
-     */
-    public static function setComponentInstance($className)
-    {
-        if(!class_exists(static::$registerComponents[$className])) {
-            throw new \RuntimeException("Class { $className } does not exist.");
-        }
-
-        return static::$componentInstance[$className] = new static::$registerComponents[$className]();
-    }
-
-    /**
      * 获取组件实例
      *
      * @return mixed
@@ -57,13 +35,7 @@ class Facade
     {
         $className = static::getFacadeClass();
 
-        if(isset(static::$componentInstance[$className])) {
-            $instance = static::$componentInstance[$className];
-        } else {
-            $instance = static::setComponentInstance($className);
-        }
-
-        return $instance;
+        return new static::$registerComponents[$className]();
     }
 
     /**

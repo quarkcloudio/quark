@@ -195,6 +195,13 @@ class Column extends Element
     public $actionCallback = null;
 
     /**
+     * 传递给 Form.Item 的配置,可以配置 rules，但是默认的查询表单 rules 是不生效的。需要配置 ignoreRules
+     *
+     * @var array
+     */
+    public $formItemProps = null;
+
+    /**
      * 初始化
      *
      * @param  string  $attribute
@@ -553,6 +560,18 @@ class Column extends Element
     }
 
     /**
+     * 传递给 Form.Item 的配置,可以配置 rules，但是默认的查询表单 rules 是不生效的。需要配置 ignoreRules
+     *
+     * @param  $formItemProps
+     * @return $this
+     */
+    public function formItemProps($formItemProps)
+    {
+        $this->formItemProps = $formItemProps;
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -582,7 +601,8 @@ class Column extends Element
             'image' => $this->image,
             'qrcode' => $this->qrcode,
             'actions' => $this->actions,
-            'editable' => $this->editable
+            'editable' => $this->editable,
+            'formItemProps' => $this->formItemProps
         ], parent::jsonSerialize());
     }
 }
