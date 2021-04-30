@@ -53,15 +53,20 @@ abstract class Element implements JsonSerializable
      * Get the key for the component.
      *
      * @param  string $key
+     * @param  bool $md5
      * @return $this
      */
-    public function key($key = null)
+    public function key($key = null, $md5 = false)
     {
         if(empty($key)) {
             $key = uniqid(mt_rand(), true);
         }
-        $this->key = md5($key);
 
+        if($md5) {
+            $key = md5($key);
+        }
+
+        $this->key = $key;
         return $this;
     }
 

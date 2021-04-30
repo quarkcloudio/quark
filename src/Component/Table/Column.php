@@ -549,13 +549,13 @@ class Column extends Element
     /**
      * 设置为数据操作列
      *
-     * @param  Closure  $callback
+     * @param  array  $actions
      * @return $this
      */
-    public function actions(Closure $callback = null)
+    public function actions($actions)
     {
-        $this->actions = true;
-        $this->actionCallback = $callback;
+        $this->actions = $actions;
+
         return $this;
     }
 

@@ -23,6 +23,7 @@ class Facade
         'descriptions' => \QuarkCMS\Quark\Component\Descriptions\Descriptions::class,
         'table' => \QuarkCMS\Quark\Component\Table\Table::class,
         'column' => \QuarkCMS\Quark\Component\Table\Column::class,
+        'action' => \QuarkCMS\Quark\Component\Action\Action::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
     ];
 
