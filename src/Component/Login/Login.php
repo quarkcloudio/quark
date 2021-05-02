@@ -166,7 +166,9 @@ class Login extends Element
      */
     public function jsonSerialize()
     {
-        $this->key(__CLASS__.$this->api);
+        if(empty($this->key)) {
+            $this->key(__CLASS__.$this->api, true);
+        }
 
         return array_merge([
             'api' => $this->api,
