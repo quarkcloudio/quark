@@ -2,6 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Table;
 
+use QuarkCMS\Quark\Component\Table\ToolBar;
 use QuarkCMS\Quark\Component\Table\Column;
 use QuarkCMS\Quark\Component\Element;
 use Closure;
@@ -91,7 +92,7 @@ class Table extends Element
      *
      * @var object
      */
-    public $toolbar = null;
+    public $toolBar = null;
 
     /**
      * 自定义表格的主体函数
@@ -268,9 +269,11 @@ class Table extends Element
      * @param  void
      * @return $this
      */
-    public function toolbar()
+    public function toolBar($toolBar)
     {
-        return $this->toolbar;
+        $this->toolBar = $toolBar;
+
+        return $this;
     }
 
     /**
@@ -367,6 +370,7 @@ class Table extends Element
             'columns' => $this->columns,
             'options' => $this->options,
             'search' => $this->search,
+            'toolBar' => $this->toolBar,
             'dateFormatter' => $this->dateFormatter,
             'columnEmptyText' => $this->columnEmptyText,
             'tableExtraRender' => $this->tableExtraRender,

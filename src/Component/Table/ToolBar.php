@@ -1,11 +1,10 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin\Components\Table;
+namespace QuarkCMS\Quark\Component\Table;
 
 use Closure;
-use Illuminate\Support\Str;
-use QuarkCMS\QuarkAdmin\Element;
-use QuarkCMS\QuarkAdmin\Action;
+use QuarkCMS\Quark\Component\Element;
+use QuarkCMS\Quark\Facades\Action;
 
 class ToolBar extends Element
 {
@@ -43,6 +42,13 @@ class ToolBar extends Element
      * @var object
      */
     public $action = null;
+
+    /**
+     * 操作区行为
+     *
+     * @var array
+     */
+    public $actions = null;
 
     /**
      * 设置区
@@ -88,10 +94,11 @@ class ToolBar extends Element
      */
     public function __construct($title = null, $subTitle = null)
     {
-        $this->component = 'toolbar';
+        $this->type = 'toolBar';
+
         $this->action = new Action;
-        $this->title = $this->title;
-        $this->subTitle = $this->subTitle;
+        $this->title = $title;
+        $this->subTitle = $subTitle;
         
         return $this;
     }
@@ -152,7 +159,7 @@ class ToolBar extends Element
      */
     public function actions(Closure $callback = null)
     {
-        $callback($this->action);
+        $this->actions = $callback($this->action);
 
         return $this;
     }
@@ -230,7 +237,8 @@ class ToolBar extends Element
             'title' => $this->title,
             'subTitle' => $this->subTitle,
             'description' => $this->description,
-            'multipleLine' => $this->multipleLine
+            'multipleLine' => $this->multipleLine,
+            'actions' => $this->actions
         ], parent::jsonSerialize());
     }
 }

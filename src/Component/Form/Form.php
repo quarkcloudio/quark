@@ -271,7 +271,7 @@ class Form extends Element
      */
     public function __construct(Eloquent $model = null)
     {
-        $this->component = 'form';
+        $this->type = 'form';
         $this->model = $model;
 
         // 初始化表单提交地址
