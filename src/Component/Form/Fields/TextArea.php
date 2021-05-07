@@ -1,8 +1,7 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin\Components\Form\Fields;
+namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use Illuminate\Support\Arr;
 use Exception;
 
 class TextArea extends Text

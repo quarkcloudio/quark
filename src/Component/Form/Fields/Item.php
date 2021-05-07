@@ -1,11 +1,9 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin\Components\Form;
+namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\QuarkAdmin\Element;
-use QuarkCMS\QuarkAdmin\Form;
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
+use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Element;
 use Exception;
 
 class Item extends Element

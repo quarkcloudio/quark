@@ -1,8 +1,8 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin\Components\Form\Fields;
+namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\QuarkAdmin\Components\Form\Item;
+use QuarkCMS\Quark\Component\Form\Item;
 
 class Hidden extends Item
 {

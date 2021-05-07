@@ -1,13 +1,10 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin;
+namespace QuarkCMS\Quark\Component\Form;
 
+use QuarkCMS\Quark\Component\Element;
 use Closure;
 use Exception;
-use Illuminate\Database\Eloquent\Model as Eloquent;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
 
 class Form extends Element
 {
@@ -45,13 +42,6 @@ class Form extends Element
      * @var array
      */
     public $initialValues = null;
-
-    /**
-     * 表单提交时的数据
-     *
-     * @var array
-     */
-    public $data = null;
 
     /**
      * label 标签的文本对齐方式,left | right
@@ -145,90 +135,6 @@ class Form extends Element
     public $items = null;
 
     /**
-     * 绑定的模型
-     *
-     * @var object
-     */
-    public $model;
-
-    /**
-     * eloquent模型
-     *
-     * @var object
-     */
-    public $eloquentModel;
-
-    /**
-     * 创建页面显示前回调
-     *
-     * @var object
-     */
-    public $creatingCallback;
-
-    /**
-     * 编辑页面显示前回调
-     *
-     * @var object
-     */
-    public $editingCallback;
-
-    /**
-     * 数据保存前回调
-     *
-     * @var object
-     */
-    public $savingCallback;
-
-    /**
-     * 数据保存后回调
-     *
-     * @var object
-     */
-    public $savedCallback;
-
-    /**
-     * 是否禁用重置按钮
-     *
-     * @var bool
-     */
-    public $disabledResetButton = false;
-
-    /**
-     * 重置按钮文字展示
-     *
-     * @var string
-     */
-    public $resetButtonText = '重置';
-
-    /**
-     * 是否禁用提交按钮
-     *
-     * @var bool
-     */
-    public $disabledSubmitButton = false;
-
-    /**
-     * 提交按钮文字展示
-     *
-     * @var string
-     */
-    public $submitButtonText = '提交';
-
-    /**
-     * 是否禁用返回按钮
-     *
-     * @var bool
-     */
-    public $disabledBackButton = false;
-
-    /**
-     * 返回按钮文字展示
-     *
-     * @var string
-     */
-    public $backButtonText = '返回上一页';
-
-    /**
      * 表单字段控件
      *
      * @var array
@@ -266,56 +172,13 @@ class Form extends Element
      * 初始化表单组件
      *
      * @param  string  $name
-     * @param  \Closure|array  $content
      * @return void
      */
-    public function __construct(Eloquent $model = null)
+    public function __construct()
     {
         $this->type = 'form';
-        $this->model = $model;
-
-        // 初始化表单提交地址
-        $this->initApi();
-
-        // 初始化表单提交数据
-        $this->initData();
 
         return $this;
-    }
-
-    /**
-     * 初始化api
-     *
-     * @param  void
-     * @return void
-     */
-    protected function initApi()
-    {
-        $action = \request()->route()->getName();
-        $action = Str::replaceFirst('api/','',$action);
-
-        if($this->isCreating()) {
-            $action = Str::replaceLast('/create','/store',$action);
-        }
-
-        if($this->isEditing()) {
-            $action = Str::replaceLast('/edit','/update',$action);
-        }
-
-        $this->api($action);
-    }
-
-    /**
-     * 初始化提交表单数据
-     *
-     * @param  void
-     * @return void
-     */
-    protected function initData()
-    {
-        if(Str::endsWith(\request()->route()->getName(), ['/store', '/update'])) {
-            $this->data = request()->all();
-        }
     }
 
     /**
@@ -327,6 +190,7 @@ class Form extends Element
     public function title($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -339,6 +203,7 @@ class Form extends Element
     public function width($width)
     {
         $this->width = $width;
+
         return $this;
     }
 
@@ -351,6 +216,7 @@ class Form extends Element
     public function colon($colon)
     {
         $this->colon = $colon;
+
         return $this;
     }
 
@@ -603,144 +469,6 @@ class Form extends Element
     }
 
     /**
-     * 读取模型
-     *
-     * @return $this
-     */
-    public function model()
-    {
-        return $this->model;
-    }
-
-    /**
-     * 判断是否为创建页面
-     *
-     * @return bool
-     */
-    public function isCreating(): bool
-    {
-        return Str::endsWith(\request()->route()->getName(), ['/create', '/store']);
-    }
-
-    /**
-     * 判断是否为编辑页面
-     *
-     * @return bool
-     */
-    public function isEditing(): bool
-    {
-        return Str::endsWith(\request()->route()->getName(), '/edit', '/update');
-    }
-
-    /**
-     * 解析验证提交数据库前的值
-     *
-     * @param array $data
-     * @return array
-     */
-    public function itemValidator($data,$name,$rules,$ruleMessages)
-    {
-        $errorMsg = null;
-        foreach ($rules as &$rule) {
-            if (is_string($rule) && isset($data['id'])) {
-                $rule = str_replace('{id}', $data['id'], $rule);
-            }
-        }
-        $getRules[$name] = $rules;
-        $validator = Validator::make($data,$getRules,$ruleMessages);
-        if ($validator->fails()) {
-            $errors = $validator->errors()->getMessages();
-            foreach($errors as $key => $value) {
-                $errorMsg = $value[0];
-            }
-            return $errorMsg;
-        }
-
-        return $errorMsg;
-    }
-
-    /**
-     * 验证提交数据库前的值
-     *
-     * @param array $data
-     * @return array
-     */
-    public function validator($data = null)
-    {
-        $items = $this->items;
-
-        if(empty($data)) {
-            $data = $this->data;
-        }
-
-        foreach ($items as $key => $value) {
-
-            // 通用验证规则
-            if($value->rules) {
-                $errorMsg = $this->itemValidator($data,$value->name,$value->rules,$value->ruleMessages);
-                if($errorMsg) {
-                    return $errorMsg;
-                }
-            }
-
-            // 新增数据，验证规则
-            if($this->isCreating()) {
-                if($value->creationRules) {
-                    $errorMsg = $this->itemValidator($data,$value->name,$value->creationRules,$value->creationRuleMessages);
-                    if($errorMsg) {
-                        return $errorMsg;
-                    }
-                }
-            }
-
-            // 编辑数据，验证规则
-            if($this->isEditing()) {
-                if($value->updateRules) {
-                    $errorMsg = $this->itemValidator($data,$value->name,$value->updateRules,$value->updateRuleMessages);
-                    if($errorMsg) {
-                        return $errorMsg;
-                    }
-                }
-            }
-
-            // when中的变量
-            if(!empty($value->when)) {
-                foreach ($value->when as $when) {
-                    foreach ($when['items'] as $whenItem) {
-                        // 通用验证规则
-                        if($whenItem->rules) {
-                            $errorMsg = $this->itemValidator($data,$whenItem->name,$whenItem->rules,$whenItem->ruleMessages);
-                            if($errorMsg) {
-                                return $errorMsg;
-                            }
-                        }
-
-                        // 新增数据，验证规则
-                        if($this->isCreating()) {
-                            if($whenItem->creationRules) {
-                                $errorMsg = $this->itemValidator($data,$whenItem->name,$whenItem->creationRules,$whenItem->creationRuleMessages);
-                                if($errorMsg) {
-                                    return $errorMsg;
-                                }
-                            }
-                        }
-
-                        // 编辑数据，验证规则
-                        if($this->isEditing()) {
-                            if($whenItem->updateRules) {
-                                $errorMsg = $this->itemValidator($data,$whenItem->name,$whenItem->updateRules,$whenItem->updateRuleMessages);
-                                if($errorMsg) {
-                                    return $errorMsg;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
      * 解析保存提交数据库前的值
      *
      * @param array $rules
@@ -784,244 +512,14 @@ class Form extends Element
     }
 
     /**
-     * 表单内置的保存方法
+     * 行为
      *
-     * @param array|null $data
-     * @return array
-     */
-    public function store($data = null)
-    {
-        if(!empty($data)) {
-            $this->data = $data;
-        }
-
-        $errorMsg = $this->validator($this->data);
-        if($errorMsg) {
-            return error($errorMsg);
-        }
-
-        // 调用保存前回调函数
-        if(!empty($this->savingCallback)) {
-            $result = call_user_func($this->savingCallback,$this);
-            if($result) {
-                return $result;
-            }
-        }
-
-        $data = $this->parseSubmitData($this->data);
-
-        $result = $this->model->create($data);
-
-        // 调用保存后回调函数
-        if(!empty($this->savedCallback)) {
-            $this->model = $result;
-            return call_user_func($this->savedCallback,$this);
-        }
-
-        return $result;
-    }
-
-    /**
-     * 表单内置的编辑方法
-     *
-     * @param string|null $id
+     * @param array $actions
      * @return $this
      */
-    public function edit($id = null)
+    public function actions($actions)
     {
-        if(empty($id)) {
-            $id = request('id');
-        }
-
-        $this->values = $this->model->findOrFail($id)->toArray();
-
-        return $this;
-    }
-
-    /**
-     * 表单内置的更新方法
-     *
-     * @param array|null $data
-     * @return array
-     */
-    public function update($data = null)
-    {
-        if(!empty($data)) {
-            $this->data = $data;
-        }
-
-        $errorMsg = $this->validator($this->data);
-        if($errorMsg) {
-            return error($errorMsg);
-        }
-
-        // 调用保存前回调函数
-        if(!empty($this->savingCallback)) {
-            $result = call_user_func($this->savingCallback,$this);
-            if($result) {
-                return $result;
-            }
-        }
-
-        $data = $this->parseSubmitData($this->data);
-
-        $result = $this->model->where('id',$data['id'])->update($data);
-
-        // 调用保存后回调函数
-        if(!empty($this->savedCallback)) {
-            $this->model = $result;
-            return call_user_func($this->savedCallback,$this);
-        }
-
-        return $result;
-    }
-
-    /**
-     * 表单内置的删除方法
-     *
-     * @param string|null $id
-     * @return bool
-     */
-    public function destroy($id = null)
-    {
-        if(empty($id)) {
-            $id = request('id');
-        }
-
-        if(empty($id)) {
-            return $this->error('参数错误！');
-        }
-
-        $result = $this->model->destroy($id);
-        return $result;
-    }
-
-    /**
-     * 创建页面显示前回调
-     *
-     * @param Closure $callback
-     * @return $this
-     */
-    public function creating(Closure $callback = null)
-    {
-        $this->creatingCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * 编辑页面显示前回调
-     *
-     * @param Closure $callback
-     * @return $this
-     */
-    public function editing(Closure $callback = null)
-    {
-        $this->editingCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * 保存数据前回调
-     *
-     * @param Closure $callback
-     * @return $this
-     */
-    public function saving(Closure $callback = null)
-    {
-        $this->savingCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * 保存数据后回调
-     *
-     * @param Closure $callback
-     * @return $this
-     */
-    public function saved(Closure $callback = null)
-    {
-        $this->savedCallback = $callback;
-
-        return $this;
-    }
-
-    /**
-     * 是否禁用重置按钮
-     *
-     * @param bool $disabledResetButton
-     * @return $this
-     */
-    public function disabledResetButton($disabledResetButton = true)
-    {
-        $this->disabledResetButton = $disabledResetButton;
-
-        return $this;
-    }
-
-    /**
-     * 重置按钮文字展示
-     *
-     * @param string $resetButtonText
-     * @return $this
-     */
-    public function resetButtonText($resetButtonText)
-    {
-        $this->resetButtonText = $resetButtonText;
-
-        return $this;
-    }
-
-    /**
-     * 是否禁用提交按钮
-     *
-     * @param bool $disabledSubmitButton
-     * @return $this
-     */
-    public function disabledSubmitButton($disabledSubmitButton = true)
-    {
-        $this->disabledSubmitButton = $disabledSubmitButton;
-
-        return $this;
-    }
-
-    /**
-     * 提交按钮文字展示
-     *
-     * @param string $submitButtonText
-     * @return $this
-     */
-    public function submitButtonText($submitButtonText)
-    {
-        $this->submitButtonText = $submitButtonText;
-
-        return $this;
-    }
-
-    /**
-     * 是否禁用返回按钮
-     *
-     * @param bool $disabledBackButton
-     * @return $this
-     */
-    public function disabledBackButton($disabledBackButton = true)
-    {
-        $this->disabledBackButton = $disabledBackButton;
-
-        return $this;
-    }
-
-    /**
-     * 返回按钮文字展示
-     *
-     * @param string $backButtonText
-     * @return $this
-     */
-    public function backButtonText($backButtonText)
-    {
-        $this->backButtonText = $backButtonText;
+        $this->actions = $actions;
 
         return $this;
     }
@@ -1071,20 +569,6 @@ class Form extends Element
         // 设置组件唯一标识
         $this->key();
 
-        // 调用创建页面展示前回调函数
-        if(Str::endsWith(\request()->route()->getName(), ['/create'])) {
-            if(!empty($this->creatingCallback)) {
-                call_user_func($this->creatingCallback,$this);
-            }
-        }
-
-        // 调用编辑页面展示前回调函数
-        if(Str::endsWith(\request()->route()->getName(), ['/edit'])) {
-            if(!empty($this->editingCallback)) {
-                call_user_func($this->editingCallback,$this);
-            }
-        }
-
         // 为空，初始化表单数据
         $this->initialValues($this->values);
 
@@ -1096,6 +580,7 @@ class Form extends Element
             'title' => $this->title,
             'width' => $this->width,
             'name' => $this->name,
+            'actions' => $this->actions,
             'preserve' => $this->preserve,
             'requiredMark' => $this->requiredMark,
             'scrollToFirstError' => $this->scrollToFirstError,
@@ -1105,12 +590,6 @@ class Form extends Element
             'labelCol' => $this->labelCol,
             'wrapperCol' => $this->wrapperCol,
             'buttonWrapperCol' => $this->buttonWrapperCol,
-            'disabledResetButton' => $this->disabledResetButton,
-            'resetButtonText' => $this->resetButtonText,
-            'disabledSubmitButton' => $this->disabledSubmitButton,
-            'submitButtonText' => $this->submitButtonText,
-            'disabledBackButton' => $this->disabledBackButton,
-            'backButtonText' => $this->backButtonText,
             'items' => $this->items,
         ], parent::jsonSerialize());
     }

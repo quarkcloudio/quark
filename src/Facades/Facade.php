@@ -26,6 +26,8 @@ class Facade
         'toolBar' => \QuarkCMS\Quark\Component\Table\ToolBar::class,
         'action' => \QuarkCMS\Quark\Component\Action\Action::class,
         'tpl' => \QuarkCMS\Quark\Component\Tpl\Tpl::class,
+        'form' => \QuarkCMS\Quark\Component\Form\Form::class,
+        'formItem' => \QuarkCMS\Quark\Component\Form\FormItem::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
     ];
 

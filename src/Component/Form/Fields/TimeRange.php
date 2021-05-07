@@ -1,9 +1,8 @@
 <?php
 
-namespace QuarkCMS\QuarkAdmin\Components\Form\Fields;
+namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\QuarkAdmin\Components\Form\Item;
-use Illuminate\Support\Arr;
+use QuarkCMS\Quark\Component\Form\Item;
 use Exception;
 
 class TimeRange extends Item
