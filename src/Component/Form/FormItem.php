@@ -6,7 +6,7 @@ use QuarkCMS\Quark\Component\Element;
 use Closure;
 use Exception;
 
-class FormItem extends Element
+class FormItem
 {
     /**
      * 表单字段控件
@@ -14,32 +14,33 @@ class FormItem extends Element
      * @var array
      */
     public static $formFields = [
-        'hidden' => Component\Form\Fields\Hidden::class,
-        'display' => Component\Form\Fields\Display::class,
-        'text' => Component\Form\Fields\Text::class,
-        'textarea' => Component\Form\Fields\TextArea::class,
-        'textArea' => Component\Form\Fields\TextArea::class,
-        'number' => Component\Form\Fields\Number::class,
-        'radio' => Component\Form\Fields\Radio::class,
-        'image' => Component\Form\Fields\Image::class,
-        'file' => Component\Form\Fields\File::class,
-        'tree' => Component\Form\Fields\Tree::class,
-        'select' => Component\Form\Fields\Select::class,
-        'checkbox' => Component\Form\Fields\Checkbox::class,
-        'icon' => Component\Form\Fields\Icon::class,
-        'switch' => Component\Form\Fields\SwitchField::class,
-        'icon' => Component\Form\Fields\Icon::class,
-        'date' => Component\Form\Fields\Date::class,
-        'dateRange' => Component\Form\Fields\DateRange::class,
-        'datetime' => Component\Form\Fields\Datetime::class,
-        'datetimeRange' => Component\Form\Fields\DatetimeRange::class,
-        'time' => Component\Form\Fields\Time::class,
-        'timeRange' => Component\Form\Fields\TimeRange::class,
-        'editor' => Component\Form\Fields\Editor::class,
-        'map' => Component\Form\Fields\Map::class,
-        'cascader' => Component\Form\Fields\Cascader::class,
-        'search' => Component\Form\Fields\Search::class,
-        'list' => Component\Form\Fields\ListField::class,
+        'hidden' => Fields\Hidden::class,
+        'display' => Fields\Display::class,
+        'text' => Fields\Text::class,
+        'password' => Fields\Password::class,
+        'textarea' => Fields\TextArea::class,
+        'textArea' => Fields\TextArea::class,
+        'number' => Fields\Number::class,
+        'radio' => Fields\Radio::class,
+        'image' => Fields\Image::class,
+        'file' => Fields\File::class,
+        'tree' => Fields\Tree::class,
+        'select' => Fields\Select::class,
+        'checkbox' => Fields\Checkbox::class,
+        'icon' => Fields\Icon::class,
+        'switch' => Fields\SwitchField::class,
+        'icon' => Fields\Icon::class,
+        'date' => Fields\Date::class,
+        'dateRange' => Fields\DateRange::class,
+        'datetime' => Fields\Datetime::class,
+        'datetimeRange' => Fields\DatetimeRange::class,
+        'time' => Fields\Time::class,
+        'timeRange' => Fields\TimeRange::class,
+        'editor' => Fields\Editor::class,
+        'map' => Fields\Map::class,
+        'cascader' => Fields\Cascader::class,
+        'search' => Fields\Search::class,
+        'list' => Fields\ListField::class,
     ];
 
     /**

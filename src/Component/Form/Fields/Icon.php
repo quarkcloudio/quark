@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
 class Icon extends Item
@@ -43,14 +43,13 @@ class Icon extends Item
      * @return void
      */ 
     public function __construct($name,$label = '') {
-        $this->component = 'icon';
+        $this->type = 'icon';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
             $this->label = $name;
         } else {
-            $label = Arr::get($label, 0, ''); //[0];
-            $this->label = $label;
+            $this->label = $label[0];
         }
 
         $this->options = [

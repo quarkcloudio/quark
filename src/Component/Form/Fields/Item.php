@@ -2,7 +2,6 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
 use QuarkCMS\Quark\Component\Element;
 use Exception;
 
@@ -447,36 +446,9 @@ class Item extends Element
     protected function setFrontendRules()
     {
         $frontendRules = [];
-        $rules = $creationRules = $updateRules = null;
-
-        // 判断是否为创建页控制器
-        $isCreating = Str::endsWith(\request()->route()->getName(), ['/create', '/store']);
-
-        // 判断是否为编辑页控制器
-        $isEditing = Str::endsWith(\request()->route()->getName(), '/edit', '/update');
 
         if(!empty($this->rules)) {
-            $rules = $this->parseFrontendRules($this->rules,$this->ruleMessages);
-        }
-
-        if($isCreating && !empty($this->creationRules)) {
-            $creationRules = $this->parseFrontendRules($this->creationRules,$this->creationRuleMessages);
-        }
-
-        if($isEditing && !empty($this->updateRules)) {
-            $updateRules = $this->parseFrontendRules($this->updateRules,$this->updateRuleMessages);
-        }
-
-        if($rules) {
-            $frontendRules = Arr::collapse([$frontendRules, $rules]);
-        }
-
-        if($creationRules) {
-            $frontendRules = Arr::collapse([$frontendRules, $creationRules]);
-        }
-
-        if($updateRules) {
-            $frontendRules = Arr::collapse([$frontendRules, $updateRules]);
+            $frontendRules = $this->parseFrontendRules($this->rules,$this->ruleMessages);
         }
 
         $this->frontendRules = $frontendRules;
@@ -492,38 +464,6 @@ class Item extends Element
     {
         $this->rules = $rules;
         $this->ruleMessages = $messages;
-
-        // 设置前端规则
-        $this->setFrontendRules();
-        return $this;
-    }
-
-    /**
-     * 校验规则，只在创建表单提交时生效
-     * 
-     * @param  array|$this $rules
-     * @return $this
-     */
-    public function creationRules($rules,$messages = null)
-    {
-        $this->creationRules = $rules;
-        $this->creationRuleMessages = $messages;
-
-        // 设置前端规则
-        $this->setFrontendRules();
-        return $this;
-    }
-
-    /**
-     * 校验规则，只在更新表单提交时生效
-     * 
-     * @param  array|$this $rules
-     * @return $this
-     */
-    public function updateRules($rules,$messages = null)
-    {
-        $this->updateRules = $rules;
-        $this->updateRuleMessages = $messages;
 
         // 设置前端规则
         $this->setFrontendRules();
@@ -638,7 +578,9 @@ class Item extends Element
      */
     public function jsonSerialize()
     {
-        $this->key(__CLASS__.$this->name.$this->label);
+        if(empty($this->key)) {
+            $this->key(__CLASS__.$this->name.$this->label, true);
+        }
 
         return array_merge([
             'label' => $this->label,

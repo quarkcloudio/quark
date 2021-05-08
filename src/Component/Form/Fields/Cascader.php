@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
 class Cascader extends Item
@@ -50,14 +50,13 @@ class Cascader extends Item
      * @return void
      */
     public function __construct($name,$label = '') {
-        $this->component = 'cascader';
+        $this->type = 'cascader';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
             $this->label = $name;
         } else {
-            $label = Arr::get($label, 0, ''); //[0];
-            $this->label = $label;
+            $this->label = $label[0];
         }
 
         $this->placeholder = '请选择';

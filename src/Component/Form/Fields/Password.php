@@ -2,27 +2,26 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
-class Tree extends Item
+class Password extends Text
 {
     /**
-     * 配置树形组件数据
+     * 是否显示切换按钮
      *
-     * @var string
+     * @var bool
      */
-    public  $treeData;
-    
+    public $visibilityToggle = true;
+
     /**
-     * 初始化Tree组件
+     * 初始化组件
      *
      * @param  string  $name
      * @param  string  $label
      * @return void
-     */
+     */ 
     public function __construct($name,$label = '') {
-        $this->type = 'tree';
+        $this->type = 'password';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
@@ -30,17 +29,21 @@ class Tree extends Item
         } else {
             $this->label = $label[0];
         }
+        
+        $this->style['width'] = 200;
+        $this->placeholder = '请输入'.$this->label;
     }
 
     /**
-     * 设置树形组件数据
+     * 是否显示切换按钮
      *
-     * @param  array $treeData
+     * @param  bool $visibilityToggle
      * @return $this
      */
-    public function data($treeData)
+    public function visibilityToggle($visibilityToggle)
     {
-        $this->treeData = $treeData;
+        $this->visibilityToggle = $visibilityToggle;
+
         return $this;
     }
 
@@ -52,7 +55,7 @@ class Tree extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'treeData' => $this->treeData
+            'visibilityToggle' => $this->visibilityToggle
         ], parent::jsonSerialize());
     }
 }

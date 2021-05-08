@@ -140,32 +140,33 @@ class Form extends Element
      * @var array
      */
     public static $formFields = [
-        'hidden' => Components\Form\Fields\Hidden::class,
-        'display' => Components\Form\Fields\Display::class,
-        'text' => Components\Form\Fields\Text::class,
-        'textarea' => Components\Form\Fields\TextArea::class,
-        'textArea' => Components\Form\Fields\TextArea::class,
-        'number' => Components\Form\Fields\Number::class,
-        'radio' => Components\Form\Fields\Radio::class,
-        'image' => Components\Form\Fields\Image::class,
-        'file' => Components\Form\Fields\File::class,
-        'tree' => Components\Form\Fields\Tree::class,
-        'select' => Components\Form\Fields\Select::class,
-        'checkbox' => Components\Form\Fields\Checkbox::class,
-        'icon' => Components\Form\Fields\Icon::class,
-        'switch' => Components\Form\Fields\SwitchField::class,
-        'icon' => Components\Form\Fields\Icon::class,
-        'date' => Components\Form\Fields\Date::class,
-        'dateRange' => Components\Form\Fields\DateRange::class,
-        'datetime' => Components\Form\Fields\Datetime::class,
-        'datetimeRange' => Components\Form\Fields\DatetimeRange::class,
-        'time' => Components\Form\Fields\Time::class,
-        'timeRange' => Components\Form\Fields\TimeRange::class,
-        'editor' => Components\Form\Fields\Editor::class,
-        'map' => Components\Form\Fields\Map::class,
-        'cascader' => Components\Form\Fields\Cascader::class,
-        'search' => Components\Form\Fields\Search::class,
-        'list' => Components\Form\Fields\ListField::class,
+        'hidden' => Fields\Hidden::class,
+        'display' => Fields\Display::class,
+        'text' => Fields\Text::class,
+        'password' => Fields\Password::class,
+        'textarea' => Fields\TextArea::class,
+        'textArea' => Fields\TextArea::class,
+        'number' => Fields\Number::class,
+        'radio' => Fields\Radio::class,
+        'image' => Fields\Image::class,
+        'file' => Fields\File::class,
+        'tree' => Fields\Tree::class,
+        'select' => Fields\Select::class,
+        'checkbox' => Fields\Checkbox::class,
+        'icon' => Fields\Icon::class,
+        'switch' => Fields\SwitchField::class,
+        'icon' => Fields\Icon::class,
+        'date' => Fields\Date::class,
+        'dateRange' => Fields\DateRange::class,
+        'datetime' => Fields\Datetime::class,
+        'datetimeRange' => Fields\DatetimeRange::class,
+        'time' => Fields\Time::class,
+        'timeRange' => Fields\TimeRange::class,
+        'editor' => Fields\Editor::class,
+        'map' => Fields\Map::class,
+        'cascader' => Fields\Cascader::class,
+        'search' => Fields\Search::class,
+        'list' => Fields\ListField::class,
     ];
 
     /**
@@ -551,7 +552,7 @@ class Form extends Element
     {
         if ($className = static::getCalledClass($method)) {
 
-            $column = Arr::get($parameters, 0, ''); //[0];
+            $column = $parameters[0]; //[0];
             $element = new $className($column, array_slice($parameters, 1));
             $this->items[] = $element;
 

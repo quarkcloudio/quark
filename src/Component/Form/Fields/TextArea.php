@@ -35,14 +35,13 @@ class TextArea extends Text
      * @return void
      */ 
     public function __construct($name,$label = '') {
-        $this->component = 'textArea';
+        $this->type = 'textArea';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
             $this->label = $name;
         } else {
-            $label = Arr::get($label, 0, ''); //[0];
-            $this->label = $label;
+            $this->label = $label[0];
         }
 
         $this->placeholder = '请输入'.$this->label;

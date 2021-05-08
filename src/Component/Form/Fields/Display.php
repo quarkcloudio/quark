@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
 class Display extends Item
@@ -14,7 +14,7 @@ class Display extends Item
      * @return void
      */
     public function __construct($label = '') {
-        $this->component = 'display';
+        $this->type = 'display';
         $this->label = $label;
     }
 }

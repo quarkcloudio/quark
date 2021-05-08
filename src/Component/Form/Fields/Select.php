@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
 class Select extends Item
@@ -57,14 +57,13 @@ class Select extends Item
      * @return void
      */ 
     function __construct($name,$label = '') {
-        $this->component = 'select';
+        $this->type = 'select';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
             $this->label = $name;
         } else {
-            $label = Arr::get($label, 0, ''); //[0];
-            $this->label = $label;
+            $this->label = $label[0];
         }
 
         $this->style['width'] = 200;

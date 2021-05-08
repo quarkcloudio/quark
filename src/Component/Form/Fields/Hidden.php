@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 
 class Hidden extends Item
 {
@@ -14,7 +14,7 @@ class Hidden extends Item
      */ 
     function __construct($name)
     {
-        $this->component = 'hidden';
+        $this->type = 'hidden';
         $this->name = $name;
     }
 

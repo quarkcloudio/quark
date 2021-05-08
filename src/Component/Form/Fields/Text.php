@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Form\Item;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
 class Text extends Item
@@ -79,14 +79,13 @@ class Text extends Item
      */ 
     public function __construct($name,$label = '')
     {
-        $this->component = 'text';
+        $this->type = 'text';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
             $this->label = $name;
         } else {
-            $label = Arr::get($label, 0, ''); //[0];
-            $this->label = $label;
+            $this->label = $label[0];
         }
 
         $this->style['width'] = 200;
@@ -186,18 +185,6 @@ class Text extends Item
     }
 
     /**
-     * 声明 input 类型，同原生 input 标签的 type 属性，见：MDN(请直接使用 Input.TextArea 代替 type="textarea")。
-     * 
-     * @param  string $type
-     * @return $this
-     */
-    public function type($type = 'text')
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
      * 可以点击清除图标删除内容
      * 
      * @param  string $allowClear
@@ -223,8 +210,7 @@ class Text extends Item
             'allowClear' => $this->allowClear,
             'size' => $this->size,
             'prefix' => $this->prefix,
-            'suffix' => $this->suffix,
-            'type' => $this->type
+            'suffix' => $this->suffix
         ], parent::jsonSerialize());
     }
 }
