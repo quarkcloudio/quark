@@ -1,6 +1,6 @@
 <?php
 
-namespace QuarkCMS\Quark\Component\Action;
+namespace QuarkCMS\Quark\Component\Tpl;
 
 use QuarkCMS\Quark\Component\Element;
 
