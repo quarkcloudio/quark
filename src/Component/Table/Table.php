@@ -53,6 +53,13 @@ class Table extends Element
     public $columns;
     
     /**
+     * 批量操作选择项
+     *
+     * @var array
+     */
+    public $rowSelection = [];
+
+    /**
      * table 工具栏，设为 false 时不显示,{{ fullScreen: true, reload: true ,setting: true }}
      *
      * @var array
@@ -71,7 +78,7 @@ class Table extends Element
      *
      * @var object
      */
-    public $batchAction = false;
+    public $batchActions = false;
 
     /**
      * 转化 moment 格式数据为特定类型，false 不做转化,"string" | "number" | false
@@ -225,6 +232,19 @@ class Table extends Element
     }
 
     /**
+     * 批量操作选择项
+     *
+     * @param array $rowSelection
+     * @return $this
+     */
+    public function rowSelection($rowSelection)
+    {
+        $this->rowSelection = $rowSelection;
+
+        return $this;
+    }
+
+    /**
      * table 工具栏，设为 false 时不显示,{ fullScreen: true, reload: true ,setting: true}
      *
      * @param  array|bool  $options
@@ -272,6 +292,19 @@ class Table extends Element
     public function toolBar($toolBar)
     {
         $this->toolBar = $toolBar;
+
+        return $this;
+    }
+
+    /**
+     * 表格的批量操作
+     *
+     * @param  array  $batchActions
+     * @return $this
+     */
+    public function batchActions($batchActions)
+    {
+        $this->batchActions = $batchActions;
 
         return $this;
     }
@@ -368,8 +401,10 @@ class Table extends Element
             'tableLayout' => $this->tableLayout,
             'headerTitle' => $this->headerTitle,
             'columns' => $this->columns,
+            'rowSelection' => $this->rowSelection,
             'options' => $this->options,
             'search' => $this->search,
+            'batchActions' => $this->batchActions,
             'toolBar' => $this->toolBar,
             'dateFormatter' => $this->dateFormatter,
             'columnEmptyText' => $this->columnEmptyText,
