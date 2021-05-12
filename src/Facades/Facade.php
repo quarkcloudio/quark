@@ -18,6 +18,7 @@ class Facade
         'row' => \QuarkCMS\Quark\Component\Grid\Row::class,
         'col' => \QuarkCMS\Quark\Component\Grid\Col::class,
         'card' => \QuarkCMS\Quark\Component\Card\Card::class,
+        'space' => \QuarkCMS\Quark\Component\Space\Space::class,
         'statistic' => \QuarkCMS\Quark\Component\Statistic\Statistic::class,
         'statisticCard' => \QuarkCMS\Quark\Component\Statistic\StatisticCard::class,
         'descriptions' => \QuarkCMS\Quark\Component\Descriptions\Descriptions::class,
