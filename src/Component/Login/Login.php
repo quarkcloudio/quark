@@ -37,23 +37,23 @@ class Login extends Element
     /**
      * 验证码链接
      *
-     * @var string
+     * @var string|bool
      */
-    public $captchaUrl = '';
+    public $captchaUrl = false;
 
     /**
      * 页脚版权信息
      *
-     * @var string
+     * @var string|bool
      */
-    public $copyright = '';
+    public $copyright = false;
 
     /**
      * 页脚友情链接
      *
      * @var array
      */
-    public $links = null;
+    public $links = [];
 
     /**
      * 初始化容器

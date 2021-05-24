@@ -134,7 +134,7 @@ class Table extends Element
      *
      * @var array|bool
      */
-    public $pagination = null;
+    public $pagination = false;
 
     /**
      * 初始化容器
