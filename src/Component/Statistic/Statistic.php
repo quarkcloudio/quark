@@ -71,8 +71,11 @@ class Statistic extends Element
      */
     public function __construct($title = null,$value = null) {
         $this->type = 'statistic';
+
         $this->title = $title;
         $this->value = $value;
+
+        return $this;
     }
 
     /**
@@ -136,7 +139,7 @@ class Statistic extends Element
     }
 
     /**
-     * 设置数值的后缀
+     * 设置标题
      *
      * @param  string  $title
      * @return $this

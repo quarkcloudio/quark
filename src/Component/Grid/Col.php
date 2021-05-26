@@ -286,7 +286,9 @@ class Col extends Element
      */
     public function jsonSerialize()
     {
-        $this->key(__CLASS__);
+        if(empty($this->key)) {
+            $this->key(__CLASS__, true);
+        }
 
         return array_merge([
             'flex' => $this->flex,
