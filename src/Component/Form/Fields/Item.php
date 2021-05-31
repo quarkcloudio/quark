@@ -192,6 +192,34 @@ class Item extends Element
     public $when = null;
 
     /**
+     * Indicates if the element should be shown on the index view.
+     *
+     * @var \Closure|bool
+     */
+    public $showOnIndex = true;
+
+    /**
+     * Indicates if the element should be shown on the detail view.
+     *
+     * @var \Closure|bool
+     */
+    public $showOnDetail = true;
+
+    /**
+     * Indicates if the element should be shown on the creation view.
+     *
+     * @var \Closure|bool
+     */
+    public $showOnCreation = true;
+
+    /**
+     * Indicates if the element should be shown on the update view.
+     *
+     * @var \Closure|bool
+     */
+    public $showOnUpdate = true;
+
+    /**
      * 会在 label 旁增加一个 icon，悬浮后展示配置的信息
      *
      * @param  string $tooltip
@@ -568,6 +596,184 @@ class Item extends Element
 
         $when['items'] = $form->items;
         $this->when[] = $when;
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the index view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function hideFromIndex($callback = true)
+    {
+        $this->showOnIndex = is_callable($callback) ? function () use ($callback) {
+            return ! call_user_func_array($callback, func_get_args());
+        }
+        : ! $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the detail view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function hideFromDetail($callback = true)
+    {
+        $this->showOnDetail = is_callable($callback) ? function () use ($callback) {
+            return ! call_user_func_array($callback, func_get_args());
+        }
+        : ! $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the creation view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function hideWhenCreating($callback = true)
+    {
+        $this->showOnCreation = is_callable($callback) ? function () use ($callback) {
+            return ! call_user_func_array($callback, func_get_args());
+        }
+        : ! $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the update view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function hideWhenUpdating($callback = true)
+    {
+        $this->showOnUpdate = is_callable($callback) ? function () use ($callback) {
+            return ! call_user_func_array($callback, func_get_args());
+        }
+        : ! $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the index view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function showOnIndex($callback = true)
+    {
+        $this->showOnIndex = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the detail view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function showOnDetail($callback = true)
+    {
+        $this->showOnDetail = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the creation view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function showOnCreating($callback = true)
+    {
+        $this->showOnCreation = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the update view.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function showOnUpdating($callback = true)
+    {
+        $this->showOnUpdate = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should only be shown on the index view.
+     *
+     * @return $this
+     */
+    public function onlyOnIndex()
+    {
+        $this->showOnIndex = true;
+        $this->showOnDetail = false;
+        $this->showOnCreation = false;
+        $this->showOnUpdate = false;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should only be shown on the detail view.
+     *
+     * @return $this
+     */
+    public function onlyOnDetail()
+    {
+        parent::onlyOnDetail();
+
+        $this->showOnIndex = false;
+        $this->showOnDetail = true;
+        $this->showOnCreation = false;
+        $this->showOnUpdate = false;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should only be shown on forms.
+     *
+     * @return $this
+     */
+    public function onlyOnForms()
+    {
+        $this->showOnIndex = false;
+        $this->showOnDetail = false;
+        $this->showOnCreation = true;
+        $this->showOnUpdate = true;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from forms.
+     *
+     * @return $this
+     */
+    public function exceptOnForms()
+    {
+        $this->showOnIndex = true;
+        $this->showOnDetail = true;
+        $this->showOnCreation = false;
+        $this->showOnUpdate = false;
+
         return $this;
     }
 
