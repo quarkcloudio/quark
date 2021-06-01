@@ -4,6 +4,7 @@ namespace QuarkCMS\Quark\Component\Table;
 
 use QuarkCMS\Quark\Component\Table\ToolBar;
 use QuarkCMS\Quark\Component\Table\Column;
+use QuarkCMS\Quark\Component\Table\Search;
 use QuarkCMS\Quark\Component\Element;
 use Closure;
 use Exception;
@@ -67,11 +68,18 @@ class Table extends Element
     public $options = ['fullScreen' => true, 'reload' => true, 'setting' => true];
 
     /**
+     * 是否自动维护搜索表单
+     *
+     * @var bool
+     */
+    public $autoBuildSearchFrom = false;
+
+    /**
      * 是否显示搜索表单，传入对象时为搜索表单的配置
      *
-     * @var bool|array
+     * @var array
      */
-    public $search = true;
+    public $search = [];
 
     /**
      * 表格的批量操作行为
@@ -146,6 +154,7 @@ class Table extends Element
     public function __construct()
     {
         $this->type = 'table';
+        $this->search = new Search;
 
         return $this;
     }
@@ -216,6 +225,19 @@ class Table extends Element
         $this->headerTitle = $headerTitle;
 
         return $this;
+    }
+
+    /**
+     * 是否显示搜索表单，传入对象时为搜索表单的配置
+     *
+     * @param  Closure  $callback
+     * @return $this
+     */
+    public function search(Closure $callback = null)
+    {
+        $callback($this->search);
+
+        return $this->search;
     }
 
     /**
@@ -403,6 +425,7 @@ class Table extends Element
             'columns' => $this->columns,
             'rowSelection' => $this->rowSelection,
             'options' => $this->options,
+            'autoBuildSearchFrom' => $this->autoBuildSearchFrom,
             'search' => $this->search,
             'batchActions' => $this->batchActions,
             'toolBar' => $this->toolBar,
