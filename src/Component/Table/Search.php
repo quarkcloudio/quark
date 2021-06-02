@@ -95,6 +95,7 @@ class Search extends Element
      * @var array
      */
     public static $registerFields = [
+        'item' => Search\Item::class,
         'equal' => Search\Fields\Equal::class,
         'like' => Search\Fields\Like::class,
         'between' => Search\Fields\Between::class,

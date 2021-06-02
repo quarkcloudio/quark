@@ -71,6 +71,26 @@ class Item extends Element
     public $load = null;
 
     /**
+     * 初始化
+     *
+     * @param  string  $name
+     * @param  string  $label
+     * @return void
+     */
+    public function __construct($name, $label = '') {
+        $this->type = 'input';
+        $this->name = $name;
+
+        if(empty($label) || !count($label)) {
+            $this->label = $name;
+        } else {
+            $this->label = $label[0];
+        }
+
+        $this->placeholder = '请输入'.$this->label;
+    }
+
+    /**
      * label 标签的文本
      *
      * @param string $label
@@ -79,6 +99,7 @@ class Item extends Element
     public function label($label = '')
     {
         $this->label = $label;
+
         return $this;
     }
 
@@ -91,6 +112,7 @@ class Item extends Element
     public function name($name = '')
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -104,6 +126,7 @@ class Item extends Element
     {
         $this->rules = $rules;
         $this->ruleMessages = $messages;
+
         return $this;
     }
 
@@ -116,6 +139,7 @@ class Item extends Element
     public function value($value)
     {
         $this->value = $value;
+
         return $this;
     }
 
@@ -128,6 +152,24 @@ class Item extends Element
     public function default($value)
     {
         $this->defaultValue = $value;
+
+        return $this;
+    }
+
+    /**
+     * 操作符
+     *
+     * @param string
+     * @return $this
+     */
+    public function operator($operator)
+    {
+        $this->operator = $operator;
+
+        if($this->operator == 'between') {
+            $this->placeholder = ['开始' . $this->label, '结束' . $this->label];
+        }
+
         return $this;
     }
 
@@ -139,13 +181,14 @@ class Item extends Element
      */
     public function placeholder($placeholder)
     {
-        if ($this->operator == 'between') {
+        if($this->operator == 'between') {
             if (!is_array($placeholder)) {
                 throw new Exception("argument must be an array!");
             }
         }
 
         $this->placeholder = $placeholder;
+
         return $this;
     }
 
@@ -159,6 +202,7 @@ class Item extends Element
     {
         $style['width'] = $value;
         $this->style = $style;
+
         return $this;
     }
 
@@ -180,7 +224,12 @@ class Item extends Element
         }
         $this->options = $data;
 
-        $this->placeholder = '请选择' . $this->label;
+        if($this->operator == 'between') {
+            $this->placeholder = ['开始' . $this->label, '结束' . $this->label];
+        } else {
+            $this->placeholder = '请选择' . $this->label;
+        }
+
         return $this;
     }
 
@@ -201,8 +250,8 @@ class Item extends Element
             $data[] = $option;
         }
         $this->options = $data;
-
         $this->placeholder = '请选择' . $this->label;
+
         return $this;
     }
 
