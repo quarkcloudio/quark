@@ -95,7 +95,6 @@ class ToolBar extends Element
     public function __construct($title = null, $subTitle = null)
     {
         $this->type = 'toolBar';
-
         $this->action = new Action;
         $this->title = $title;
         $this->subTitle = $subTitle;
@@ -112,6 +111,7 @@ class ToolBar extends Element
     public function title($title)
     {
         $this->title = $title;
+        
         return $this;
     }
 
@@ -124,6 +124,7 @@ class ToolBar extends Element
     public function subTitle($subTitle)
     {
         $this->subTitle = $subTitle;
+
         return $this;
     }
 
@@ -136,6 +137,7 @@ class ToolBar extends Element
     public function description($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -148,6 +150,7 @@ class ToolBar extends Element
     public function search($search)
     {
         $this->search = $search;
+
         return $this;
     }
 
@@ -157,9 +160,22 @@ class ToolBar extends Element
      * @param  Closure  $callback
      * @return $this
      */
-    public function actions(Closure $callback = null)
+    public function action(Closure $callback = null)
     {
         $this->actions = $callback($this->action);
+
+        return $this;
+    }
+
+    /**
+     * 批量设置操作区
+     *
+     * @param  array  $actions
+     * @return $this
+     */
+    public function actions($actions = null)
+    {
+        $this->actions = $actions;
 
         return $this;
     }
@@ -173,6 +189,7 @@ class ToolBar extends Element
     public function settings($settings)
     {
         $this->settings = $settings;
+
         return $this;
     }
     
@@ -185,6 +202,7 @@ class ToolBar extends Element
     public function filter($filter = true)
     {
         $this->filter = $filter;
+
         return $this;
     }
 
@@ -197,6 +215,7 @@ class ToolBar extends Element
     public function multipleLine($multipleLine = true)
     {
         $this->multipleLine = $multipleLine;
+
         return $this;
     }
 
@@ -209,6 +228,7 @@ class ToolBar extends Element
     public function menu($menu)
     {
         $this->menu = $menu;
+
         return $this;
     }
 
@@ -221,6 +241,7 @@ class ToolBar extends Element
     public function tabs($tabs)
     {
         $this->tabs = $tabs;
+
         return $this;
     }
 

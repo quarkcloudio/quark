@@ -241,6 +241,19 @@ class Table extends Element
     }
 
     /**
+     * 搜索表单的配置
+     *
+     * @param  array  $search
+     * @return $this
+     */
+    public function searches($search = [])
+    {
+        $this->search = $search;
+
+        return $this;
+    }
+
+    /**
      * 批量设置表格列
      *
      * @param array $columns

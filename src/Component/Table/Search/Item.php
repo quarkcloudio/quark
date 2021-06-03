@@ -207,6 +207,20 @@ class Item extends Element
     }
 
     /**
+     * 输入框控件
+     *
+     * @param string $options
+     * @return object
+     */
+    public function input($options = [])
+    {
+        $this->type = 'input';
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
      * 下拉菜单控件
      *
      * @param array $options
