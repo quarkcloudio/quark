@@ -2,10 +2,6 @@
 
 namespace QuarkCMS\Quark\Component\Form;
 
-use QuarkCMS\Quark\Component\Element;
-use Closure;
-use Exception;
-
 class FormItem
 {
     /**

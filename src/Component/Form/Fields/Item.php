@@ -737,8 +737,6 @@ class Item extends Element
      */
     public function onlyOnDetail()
     {
-        parent::onlyOnDetail();
-
         $this->showOnIndex = false;
         $this->showOnDetail = true;
         $this->showOnCreation = false;
@@ -775,6 +773,47 @@ class Item extends Element
         $this->showOnUpdate = false;
 
         return $this;
+    }
+
+
+    /**
+     * Check for showing when updating.
+     *
+     * @return bool
+     */
+    public function isShownOnUpdate(): bool
+    {
+        return $this->showOnUpdate;
+    }
+
+    /**
+     * Check showing on index.
+     *
+     * @return bool
+     */
+    public function isShownOnIndex(): bool
+    {
+        return $this->showOnIndex;
+    }
+
+    /**
+     * Check showing on detail.
+     *
+     * @return bool
+     */
+    public function isShownOnDetail(): bool
+    {
+        return $this->showOnDetail;
+    }
+
+    /**
+     * Check for showing when creating.
+     *
+     * @return bool
+     */
+    public function isShownOnCreation(): bool
+    {
+        return $this->showOnCreation;
     }
 
     /**
