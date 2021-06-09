@@ -3,6 +3,7 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Element;
+use QuarkCMS\Quark\Component\Form\Form;
 use Exception;
 
 class Item extends Element
@@ -474,9 +475,38 @@ class Item extends Element
     protected function setFrontendRules()
     {
         $frontendRules = [];
+        $rules = $creationRules = $updateRules = null;
+
+        $uri = explode('/', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+        // 判断是否为创建页控制器
+        $isCreating = in_array(end($uri), ['create', 'store']);
+
+        // 判断是否为编辑页控制器
+        $isEditing = in_array(end($uri), ['edit', 'update']);
 
         if(!empty($this->rules)) {
-            $frontendRules = $this->parseFrontendRules($this->rules,$this->ruleMessages);
+            $rules = $this->parseFrontendRules($this->rules,$this->ruleMessages);
+        }
+
+        if($isCreating && !empty($this->creationRules)) {
+            $creationRules = $this->parseFrontendRules($this->creationRules,$this->creationRuleMessages);
+        }
+
+        if($isEditing && !empty($this->updateRules)) {
+            $updateRules = $this->parseFrontendRules($this->updateRules,$this->updateRuleMessages);
+        }
+
+        if($rules) {
+            $frontendRules = array_merge($frontendRules, $rules);
+        }
+
+        if($creationRules) {
+            $frontendRules = array_merge($frontendRules, $creationRules);
+        }
+
+        if($updateRules) {
+            $frontendRules = array_merge($frontendRules, $updateRules);
         }
 
         $this->frontendRules = $frontendRules;
@@ -492,6 +522,38 @@ class Item extends Element
     {
         $this->rules = $rules;
         $this->ruleMessages = $messages;
+
+        // 设置前端规则
+        $this->setFrontendRules();
+        return $this;
+    }
+
+    /**
+     * 校验规则，只在创建表单提交时生效
+     * 
+     * @param  array|$this $rules
+     * @return $this
+     */
+    public function creationRules($rules,$messages = null)
+    {
+        $this->creationRules = $rules;
+        $this->creationRuleMessages = $messages;
+
+        // 设置前端规则
+        $this->setFrontendRules();
+        return $this;
+    }
+
+    /**
+     * 校验规则，只在更新表单提交时生效
+     * 
+     * @param  array|$this $rules
+     * @return $this
+     */
+    public function updateRules($rules,$messages = null)
+    {
+        $this->updateRules = $rules;
+        $this->updateRuleMessages = $messages;
 
         // 设置前端规则
         $this->setFrontendRules();

@@ -533,7 +533,7 @@ class Form extends Element
      */
     public static function getCalledClass($method)
     {
-        $class = Arr::get(static::$formFields, $method);
+        $class = static::$formFields[$method];
 
         if (class_exists($class)) {
             return $class;
