@@ -126,42 +126,42 @@ class Item extends Element
      *
      * @var array
      */
-    public $rules = null;
+    public $rules = [];
 
     /**
      * 校验规则的提示信息
      *
      * @var array
      */
-    public $ruleMessages = null;
+    public $ruleMessages = [];
 
     /**
      * 创建的校验规则，设置字段的校验逻辑
      *
      * @var array
      */
-    public $creationRules = null;
+    public $creationRules = [];
 
     /**
      * 创建的校验规则提示信息
      *
      * @var array
      */
-    public $creationRuleMessages = null;
+    public $creationRuleMessages = [];
 
     /**
      * 更新的校验规则，设置字段的校验逻辑
      *
      * @var array
      */
-    public $updateRules = null;
+    public $updateRules = [];
 
     /**
      * 更新的校验规则提示信息
      *
      * @var array
      */
-    public $updateRuleMessages = null;
+    public $updateRuleMessages = [];
 
     /**
      * 前台的校验规则
