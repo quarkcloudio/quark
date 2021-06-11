@@ -288,6 +288,7 @@ class Form extends Element
         }
 
         $this->initialValues = $data;
+
         return $this;
     }
 
@@ -571,7 +572,9 @@ class Form extends Element
         $this->key();
 
         // 为空，初始化表单数据
-        $this->initialValues($this->values);
+        if(empty($this->initialValues)) {
+            $this->initialValues($this->values);
+        }
 
         return array_merge([
             'api' => $this->api,
