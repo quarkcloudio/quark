@@ -69,13 +69,6 @@ class Column extends Element
     public $copyable = false;
 
     /**
-     * 是否渲染Html
-     *
-     * @var bool
-     */
-    public $isHtml = false;
-
-    /**
      * 值的枚举，会自动转化把值当成 key 来取出要显示的内容
      *
      * @var array
@@ -146,53 +139,11 @@ class Column extends Element
     public $editable = false;
 
     /**
-     * using规则
-     * 
-     * @var array
-     */
-    public $using;
-
-    /**
-     * 列以链接形式展示
-     * 
-     * @var string|bool
-     */
-    public $link;
-
-    /**
-     * 列以图片形式展示
-     * 
-     * @var string|bool
-     */
-    public $image;
-
-    /**
-     * 列以二维码形式展示
-     * 
-     * @var string|bool
-     */
-    public $qrcode;
-
-    /**
-     * 数据展示回调
-     *
-     * @var
-     */
-    public $displayCallback = null;
-
-    /**
      * 是否为操作列
      * 
      * @var bool
      */
     public $actions = false;
-
-    /**
-     * 数据操作回调
-     *
-     * @var
-     */
-    public $actionCallback = null;
 
     /**
      * 传递给 Form.Item 的配置,可以配置 rules，但是默认的查询表单 rules 是不生效的。需要配置 ignoreRules
@@ -299,18 +250,6 @@ class Column extends Element
     public function copyable($copyable = true)
     {
         $this->copyable = $copyable;
-        return $this;
-    }
-    
-    /**
-     * 是否渲染Html
-     *
-     * @param  bool  $isHtml
-     * @return $this
-     */
-    public function isHtml($isHtml = true)
-    {
-        $this->isHtml = $isHtml;
         return $this;
     }
 
@@ -453,100 +392,6 @@ class Column extends Element
     }
 
     /**
-     * 设置本列跳转链接
-     *
-     * @param  string|bool  $href
-     * @param  string  $target
-     * @return $this
-     */
-    public function link($href='', $target='_self')
-    {
-        if(!in_array($target,['_blank', '_self', '_parent', '_top'])) {
-            throw new \Exception("Argument must be in '_blank', '_self', '_parent', '_top'!");
-        }
-
-        $link['href'] = $href;
-        $link['target'] = $target;
-        $this->link = $link;
-        return $this;
-    }
-
-    /**
-     * 设置本列编辑的跳转链接
-     *
-     * @param  string  $target
-     * @return $this
-     */
-    public function editLink($target='_self')
-    {
-        $action = \request()->route()->getName();
-        $action = Str::replaceFirst('api/','',$action);
-        $action = Str::replaceLast('/index','/edit',$action);
-        $href = '/quark/engine?api='.$action.'&id={id}';
-        $this->link($href, $target);
-
-        return $this;
-    }
-
-    /**
-     * 设置本列using规则
-     *
-     * @param  array  $using
-     * @return $this
-     */
-    public function using($using)
-    {
-        $this->using = $using;
-        return $this;
-    }
-
-    /**
-     * 设置本列图片显示
-     *
-     * @param  string  $path
-     * @param  string|number  $width
-     * @param  string|number  $height
-     * @return $this
-     */
-    public function image($path=null,$width=25,$height=25)
-    {
-        $image['path'] = $path;
-        $image['width'] = $width;
-        $image['height'] = $height;
-        $this->image = $image;
-        return $this;
-    }
-
-    /**
-     * 设置本列二维码显示
-     *
-     * @param  string  $content
-     * @param  string|number  $width
-     * @param  string|number  $height
-     * @return $this
-     */
-    public function qrcode($content=null,$width=150,$height=150)
-    {
-        $qrcode['content'] = $content;
-        $qrcode['width'] = $width;
-        $qrcode['height'] = $height;
-        $this->qrcode = $qrcode;
-        return $this;
-    }
-
-    /**
-     * 重置列的数据显示
-     *
-     * @param  Closure  $callback
-     * @return $this
-     */
-    public function display(Closure $callback)
-    {
-        $this->displayCallback = $callback;
-        return $this;
-    }
-
-    /**
      * 设置为数据操作列
      *
      * @param  array  $actions
@@ -588,7 +433,6 @@ class Column extends Element
             'tooltip' => $this->tooltip,
             'ellipsis' => $this->ellipsis,
             'copyable' => $this->copyable,
-            'isHtml' => $this->isHtml,
             'valueEnum' => $this->valueEnum,
             'valueType' => $this->valueType,
             'hideInSearch' => $this->hideInSearch,
@@ -597,9 +441,6 @@ class Column extends Element
             'order' => $this->order,
             'sorter' => $this->sorter,
             'width' => $this->width,
-            'link' => $this->link,
-            'image' => $this->image,
-            'qrcode' => $this->qrcode,
             'actions' => $this->actions,
             'editable' => $this->editable,
             'formItemProps' => $this->formItemProps

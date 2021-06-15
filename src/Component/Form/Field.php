@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form;
 
-class FormItem
+class Field
 {
     /**
      * 表单字段控件
@@ -47,7 +47,7 @@ class FormItem
      */
     public function __construct()
     {
-        $this->type = 'formItem';
+        $this->type = 'field';
 
         return $this;
     }

@@ -74,10 +74,10 @@ class Text extends Item
      * 初始化Input组件
      *
      * @param  string  $name
-     * @param  string  $label
+     * @param  array  $label
      * @return void
      */ 
-    public function __construct($name,$label = '')
+    public function __construct($name, $label = null)
     {
         $this->type = 'text';
         $this->name = $name;
