@@ -79,8 +79,11 @@ class Field
     {
         if ($className = static::getCalledClass($method)) {
 
-            $column = $parameters[0]; //[0];
-            $element = new $className($column, array_slice($parameters, 1));
+            $column = $parameters[0]; // 列字段
+            $label = $parameters[1] ?? null; // 标题
+            $callback = $parameters[2] ?? null; // 回调函数
+
+            $element = new $className($column, $label, $callback);
 
             return $element;
         }

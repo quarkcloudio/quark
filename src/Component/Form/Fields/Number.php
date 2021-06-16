@@ -8,6 +8,13 @@ use Exception;
 class Number extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'inputNumber';
+
+    /**
      * 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small
      *
      * @var string
@@ -50,25 +57,11 @@ class Number extends Item
     public $precision = 0;
 
     /**
-     * 初始化Number组件
+     * 组件样式
      *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */ 
-    public function __construct($name,$label = '') {
-        $this->type = 'inputNumber';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->style['width'] = 200;
-        $this->placeholder = '请输入'.$this->label;
-    }
+     * @var array
+     */
+    public $style = ['width' => 200];
     
     /**
      * 控件占位符
@@ -76,9 +69,10 @@ class Number extends Item
      * @param  string $placeholder
      * @return $this
      */
-    public function placeholder($placeholder = '')
+    public function placeholder($placeholder)
     {
         $this->placeholder = $placeholder;
+
         return $this;
     }
 
@@ -95,6 +89,7 @@ class Number extends Item
         }
 
         $this->size = $size;
+
         return $this;
     }
 
@@ -107,6 +102,7 @@ class Number extends Item
     public function min($min)
     {
         $this->min = $min;
+
         return $this;
     }
 
@@ -119,6 +115,7 @@ class Number extends Item
     public function max($max)
     {
         $this->max = $max;
+
         return $this;
     }
 
@@ -131,6 +128,7 @@ class Number extends Item
     public function step($step)
     {
         $this->step = $step;
+
         return $this;
     }
 
@@ -143,6 +141,7 @@ class Number extends Item
     public function precision($precision)
     {
         $this->precision = $precision;
+
         return $this;
     }
 
@@ -154,7 +153,7 @@ class Number extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'placeholder' => $this->placeholder,
+            'placeholder' => $this->placeholder ?? '请输入' . $this->label,
             'size' => $this->size,
             'min' => $this->min,
             'max' => $this->max,

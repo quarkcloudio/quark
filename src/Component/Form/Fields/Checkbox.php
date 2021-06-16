@@ -8,6 +8,13 @@ use Exception;
 class Checkbox extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'checkbox';
+
+    /**
      * 与 select 相同，根据 options 生成子节点，推荐使用。
      *
      * @var array
@@ -20,25 +27,6 @@ class Checkbox extends Item
      * @var string
      */
     public $layout = 'vertical';
-    
-    /**
-     * 初始化多选框组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */
-    public function __construct($name,$label = '')
-    {
-        $this->type = 'checkbox';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-    }
 
     /**
      * 设置多选框属性

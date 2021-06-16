@@ -7,6 +7,13 @@ use QuarkCMS\Quark\Component\Form\Fields\Item;
 class Hidden extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'hidden';
+
+    /**
      * 初始化隐藏域组件
      *
      * @param  string  $name
@@ -14,7 +21,6 @@ class Hidden extends Item
      */ 
     function __construct($name)
     {
-        $this->type = 'hidden';
         $this->name = $name;
     }
 

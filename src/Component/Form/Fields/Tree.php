@@ -3,35 +3,23 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Form\Fields\Item;
-use Exception;
 
 class Tree extends Item
 {
     /**
-     * 配置树形组件数据
+     * 组件类型
      *
      * @var string
      */
+    public $type = 'tree';
+
+    /**
+     * 配置树形组件数据
+     *
+     * @var array
+     */
     public  $treeData;
     
-    /**
-     * 初始化Tree组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */
-    public function __construct($name,$label = '') {
-        $this->type = 'tree';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-    }
-
     /**
      * 设置树形组件数据
      *

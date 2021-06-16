@@ -8,6 +8,13 @@ use Exception;
 class Search extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'search';
+
+    /**
      * mode
      *
      * @var string
@@ -26,14 +33,14 @@ class Search extends Item
      *
      * @var bool
      */
-    public $allowClear = false;
+    public $allowClear = true;
 
     /**
      * 控件占位符
      *
      * @var string
      */
-    public $placeholder = null;
+    public $placeholder = '请输入要搜索的内容';
 
     /**
      * 与 select 相同，根据 options 生成子节点，推荐使用。
@@ -50,27 +57,11 @@ class Search extends Item
     public $api;
 
     /**
-     * 初始化组件
+     * 组件样式
      *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
+     * @var array
      */
-    public function __construct($name,$label = '') {
-        $this->type = 'search';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->style['width'] = 200;
-
-        $this->placeholder = '请输入要搜索的内容';
-        $this->allowClear();
-    }
+    public $style = ['width' => 200];
 
     /**
      * 设置组件属性

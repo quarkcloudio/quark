@@ -8,6 +8,13 @@ use Exception;
 class Image extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'image';
+
+    /**
      * 图片上传模式，单图或多图，single|multiple
      *
      * @var string
@@ -55,24 +62,6 @@ class Image extends Item
      * @var string
      */
     public $api = '/api/admin/picture/upload';
-
-    /**
-     * 初始化图片上传组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */
-    public function __construct($name,$label = '') {
-        $this->type = 'image';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-    }
 
     /**
      * 上传模式，单图或多图，single|multiple

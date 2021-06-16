@@ -193,32 +193,54 @@ class Item extends Element
     public $when = null;
 
     /**
-     * Indicates if the element should be shown on the index view.
+     * 是否在列表页展示
      *
      * @var \Closure|bool
      */
     public $showOnIndex = true;
 
     /**
-     * Indicates if the element should be shown on the detail view.
+     * 是否在详情页展示
      *
      * @var \Closure|bool
      */
     public $showOnDetail = true;
 
     /**
-     * Indicates if the element should be shown on the creation view.
+     * 是否在创建页展示
      *
      * @var \Closure|bool
      */
     public $showOnCreation = true;
 
     /**
-     * Indicates if the element should be shown on the update view.
+     * 是否在编辑也展示
      *
      * @var \Closure|bool
      */
     public $showOnUpdate = true;
+
+    /**
+     * 初始化回调
+     *
+     * @var mixed
+     */
+    public $callback;
+
+    /**
+     * 初始化组件
+     *
+     * @param  string  $name
+     * @param  string  $label
+     * @param  mixed  $callback
+     * @return void
+     */
+    public function __construct($name, $label = null, $callback = null)
+    {
+        $this->name = $name;
+        $this->label = $label ? $label : $name;
+        $this->callback = $callback;
+    }
 
     /**
      * 会在 label 旁增加一个 icon，悬浮后展示配置的信息

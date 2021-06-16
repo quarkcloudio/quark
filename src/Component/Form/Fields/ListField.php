@@ -3,11 +3,18 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Form\Fields\Item;
-use QuarkCMS\Quark\Component\Form;
-use Exception;
+use QuarkCMS\Quark\Component\Form\Form;
+use Closure;
 
 class ListField extends Item
 {
+    /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'list';
+
     /**
      * 表单项
      *
@@ -21,23 +28,6 @@ class ListField extends Item
      * @var string
      */
     public $button = '添加字段';
-
-    /**
-     * 初始化组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */
-    public function __construct($name,$label = '') {
-        $this->type = 'list';
-        $this->name = $name;
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-    }
 
     /**
      * 按钮名称

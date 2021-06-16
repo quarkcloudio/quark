@@ -3,35 +3,22 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Form\Fields\Item;
-use Exception;
 
 class Radio extends Item
 {
+    /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'radio';
+
     /**
      * 与 select 相同，根据 options 生成子节点，推荐使用。
      *
      * @var array
      */
     public  $options;
-
-    /**
-     * 初始化单选组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */ 
-    public function __construct($name,$label = '')
-    {
-        $this->type = 'radio';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-    }
 
     /**
      * 设置单选属性
@@ -59,15 +46,8 @@ class Radio extends Item
      */
     public function jsonSerialize()
     {
-        $this->key(__CLASS__.$this->name.$this->label);
-
         return array_merge([
-            'label' => $this->label,
-            'name' => $this->name,
-            'disabled' => $this->disabled,
-            'options' => $this->options,
-            'value' => $this->value,
-            'defaultValue' => $this->defaultValue
+            'options' => $this->options
         ], parent::jsonSerialize());
     }
 }

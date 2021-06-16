@@ -3,10 +3,16 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Form\Fields\Item;
-use Exception;
 
 class File extends Item
 {
+    /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'file';
+
     /**
      * 上传按钮的标题
      *
@@ -41,24 +47,6 @@ class File extends Item
      * @var string
      */
     public $api = '/api/admin/file/upload';
-
-    /**
-     * 初始化文件上传组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */
-    public function __construct($name,$label = '') {
-        $this->type = 'file';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-    }
 
     /**
      * 上传文件大小限制

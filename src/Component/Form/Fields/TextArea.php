@@ -2,10 +2,15 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use Exception;
-
 class TextArea extends Text
 {
+    /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'textArea';
+
     /**
      * autoSize 属性适用于 textarea 节点，并且只有高度会自动变化。另外 autoSize 可以设定为一个对象，指定最小行数和最大行数。
      *
@@ -26,26 +31,6 @@ class TextArea extends Text
      * @var number
      */
     public $maxRows = 5;
-
-    /**
-     * 初始化TextArea组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */ 
-    public function __construct($name,$label = '') {
-        $this->type = 'textArea';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->placeholder = '请输入'.$this->label;
-    }
 
     /**
      * autoSize 属性适用于 textarea 节点，并且只有高度会自动变化。另外 autoSize 可以设定为一个对象，指定最小行数和最大行数。
@@ -99,7 +84,7 @@ class TextArea extends Text
         }
 
         return array_merge([
-            'placeholder' => $this->placeholder,
+            'placeholder' => $this->placeholder ?? '请输入' . $this->label,
             'maxLength' => $this->maxLength,
             'autoSize' => $this->autoSize
         ], parent::jsonSerialize());

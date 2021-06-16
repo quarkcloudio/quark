@@ -8,6 +8,13 @@ use Exception;
 class Text extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'text';
+
+    /**
      * 带标签的 input，设置后置标签。例如：'http://'
      *
      * @var string
@@ -50,13 +57,6 @@ class Text extends Item
     public $suffix = null;
 
     /**
-     * 声明 input 类型，同原生 input 标签的 type 属性，见：MDN(请直接使用 Input.TextArea 代替 type="textarea")。
-     *
-     * @var string
-     */
-    public $type = 'text';
-
-    /**
      * 控件占位符
      *
      * @var string
@@ -71,26 +71,11 @@ class Text extends Item
     public $allowClear = false;
 
     /**
-     * 初始化Input组件
+     * 组件样式
      *
-     * @param  string  $name
-     * @param  array  $label
-     * @return void
-     */ 
-    public function __construct($name, $label = null)
-    {
-        $this->type = 'text';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->style['width'] = 200;
-        $this->placeholder = '请输入'.$this->label;
-    }
+     * @var array
+     */
+    public $style = ['width' => 200];
     
     /**
      * 控件占位符
@@ -204,7 +189,7 @@ class Text extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'placeholder' => $this->placeholder,
+            'placeholder' => $this->placeholder ?? '请输入' . $this->label,
             'maxLength' => $this->maxLength,
             'addonAfter' => $this->addonAfter,
             'allowClear' => $this->allowClear,

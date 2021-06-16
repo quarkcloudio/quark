@@ -8,6 +8,13 @@ use Exception;
 class Select extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'select';
+
+    /**
      * 根据 options 生成子节点，推荐使用。
      *
      * @var array
@@ -33,7 +40,7 @@ class Select extends Item
      *
      * @var bool
      */
-    public $allowClear = false;
+    public $allowClear = true;
 
     /**
      * 控件占位符
@@ -50,26 +57,11 @@ class Select extends Item
     public $load = null;
 
     /**
-     * 初始化下拉框组件
+     * 组件样式
      *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */ 
-    function __construct($name,$label = '') {
-        $this->type = 'select';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->style['width'] = 200;
-        $this->placeholder = '请选择'.$this->label;
-        $this->allowClear();
-    }
+     * @var array
+     */
+    public $style = ['width' => 200];
 
     /**
      * 单向联动
@@ -171,7 +163,7 @@ class Select extends Item
     {
         return array_merge([
             'options' => $this->options,
-            'placeholder' => $this->placeholder,
+            'placeholder' => $this->placeholder ?? '请选择'.$this->label,
             'allowClear' => $this->allowClear,
             'size' => $this->size,
             'mode' => $this->mode,

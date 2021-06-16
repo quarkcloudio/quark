@@ -3,16 +3,22 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Form\Fields\Item;
-use Exception;
 
 class Map extends Item
 {
     /**
-     * type
+     * 组件类型
      *
      * @var string
      */
-    public $type = 'text';
+    public $type = 'map';
+
+    /**
+     * 默认值
+     *
+     * @var array
+     */
+    public $value = ['longitude' => '116.397724', 'latitude' => '39.903755'];
 
     /**
      * zoom
@@ -29,32 +35,11 @@ class Map extends Item
     public $mapKey = '788e08def03f95c670944fe2c78fa76f';
 
     /**
-     * 初始化组件
+     * 组件样式
      *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
+     * @var array
      */
-    public function __construct($name,$label = '') {
-        $this->type = 'map';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $position['longitude'] = '116.397724';
-        $position['latitude'] = '39.903755';
-        $this->value = $position;
-
-        $style['height'] = '400px';
-        $style['width'] = '100%';
-        $style['marginTop'] = '10px';
-
-        $this->style = $style;
-    }
+    public $style = ['height' => 400, 'width' => '100%', 'marginTop' => '10px'];
 
     /**
      * zoom
@@ -127,7 +112,6 @@ class Map extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'type' => $this->type,
             'zoom' => $this->zoom,
             'mapKey' => $this->mapKey
         ], parent::jsonSerialize());

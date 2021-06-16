@@ -8,6 +8,13 @@ use Exception;
 class Cascader extends Item
 {
     /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'cascader';
+
+    /**
      * 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small
      *
      * @var string
@@ -26,14 +33,14 @@ class Cascader extends Item
      *
      * @var bool
      */
-    public $allowClear = false;
+    public $allowClear = true;
 
     /**
      * 控件占位符
      *
      * @var string
      */
-    public $placeholder = null;
+    public $placeholder = '请选择';
 
     /**
      * api
@@ -41,27 +48,6 @@ class Cascader extends Item
      * @var string
      */
     public $api;
-
-    /**
-     * 初始化组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */
-    public function __construct($name,$label = '') {
-        $this->type = 'cascader';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->placeholder = '请选择';
-        $this->allowClear();
-    }
 
     /**
      * 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small

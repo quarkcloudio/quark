@@ -2,37 +2,28 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use Exception;
-
 class Password extends Text
 {
+    /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'password';
+
+    /**
+     * 组件样式
+     *
+     * @var array
+     */
+    public $style = ['width' => 200];
+
     /**
      * 是否显示切换按钮
      *
      * @var bool
      */
     public $visibilityToggle = true;
-
-    /**
-     * 初始化组件
-     *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
-     */ 
-    public function __construct($name,$label = '') {
-        $this->type = 'password';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-        
-        $this->style['width'] = 200;
-        $this->placeholder = '请输入'.$this->label;
-    }
 
     /**
      * 是否显示切换按钮

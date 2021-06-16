@@ -3,10 +3,16 @@
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Form\Fields\Item;
-use Exception;
 
 class Time extends Item
 {
+    /**
+     * 组件类型
+     *
+     * @var string
+     */
+    public $type = 'time';
+
     /**
      * 时间显示格式
      *
@@ -15,24 +21,11 @@ class Time extends Item
     public $format = 'HH:mm';
 
     /**
-     * 初始化组件
+     * 默认值
      *
-     * @param  string  $name
-     * @param  string  $label
-     * @return void
+     * @var string
      */
-    public function __construct($name,$label = '') {
-        $this->type = 'time';
-        $this->name = $name;
-
-        if(empty($label) || !count($label)) {
-            $this->label = $name;
-        } else {
-            $this->label = $label[0];
-        }
-
-        $this->value = null;
-    }
+    public $value = null;
 
     /**
      * 设置时间显示格式
@@ -43,6 +36,7 @@ class Time extends Item
     public function format($format)
     {
         $this->format = $format;
+        
         return $this;
     }
 
