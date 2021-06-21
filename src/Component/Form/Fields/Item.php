@@ -228,6 +228,13 @@ class Item extends Element
     public $callback;
 
     /**
+     * 可编辑列
+     * 
+     * @var array|bool
+     */
+    public $editable = false;
+
+    /**
      * 初始化组件
      *
      * @param  string  $name
@@ -901,6 +908,19 @@ class Item extends Element
     }
 
     /**
+     * 设置为可编辑列
+     *
+     * @param  bool  $editable
+     * @return $this
+     */
+    public function editable($editable = true)
+    {        
+        $this->editable = $editable;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -920,7 +940,8 @@ class Item extends Element
             'frontendRules' => $this->frontendRules,
             'value' => $this->value,
             'defaultValue' => $this->defaultValue,
-            'when' => $this->when
+            'when' => $this->when,
+            'editable' => $this->editable
         ], parent::jsonSerialize());
     }
 }

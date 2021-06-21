@@ -3,7 +3,6 @@
 namespace QuarkCMS\Quark\Component\Table;
 
 use Closure;
-use Illuminate\Support\Str;
 use QuarkCMS\Quark\Component\Element;
 
 /**
@@ -367,9 +366,13 @@ class Column extends Element
     public function editable($name='text',$options=false,$action='')
     {
         if(empty($action)) {
-            $action = \request()->route()->getName();
-            $action = Str::replaceFirst('api/','',$action);
-            $action = Str::replaceLast('/index','/action',$action);
+            $subject = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+            $startPosition = strpos($subject, 'api/');
+            $action = ($startPosition !== false) ? substr_replace($subject, '', $startPosition, strlen('api/')) : $subject;
+    
+            $endPosition = strrpos($action, '/index');
+            $action = ($endPosition !== false) ? substr_replace($action, '/editable', $endPosition, strlen('/index')) : $action;
         }
 
         if($name == 'select') {

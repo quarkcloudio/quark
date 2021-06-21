@@ -27,6 +27,32 @@ class SwitchField extends Item
     }
 
     /**
+     * 设置开关属性
+     *
+     * @param  string $value
+     * @return $this
+     */
+    public function trueValue($value)
+    {
+        $this->options['on'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * 设置开关属性
+     *
+     * @param  string $value
+     * @return $this
+     */
+    public function falseValue($value)
+    {
+        $this->options['off'] = $value;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
