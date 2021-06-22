@@ -40,6 +40,20 @@ class Radio extends Item
     }
 
     /**
+     * 当前列值的枚举 valueEnum
+     *
+     * @return array
+     */
+    public function getValueEnum()
+    {
+        foreach ($this->options as $option) {
+            $options[$option['value']] = $option['label'];
+        }
+
+        return $options;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array

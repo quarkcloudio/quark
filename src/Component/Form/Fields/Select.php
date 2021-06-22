@@ -99,6 +99,20 @@ class Select extends Item
     }
 
     /**
+     * 当前列值的枚举 valueEnum
+     *
+     * @return array
+     */
+    public function getValueEnum()
+    {
+        foreach ($this->options as $option) {
+            $options[$option['value']] = $option['label'];
+        }
+
+        return $options;
+    }
+
+    /**
      * 设置 Select 的模式为多选或标签，multiple | tags
      *
      * @param  string $mode

@@ -53,6 +53,21 @@ class SwitchField extends Item
     }
 
     /**
+     * 当前列值的枚举 valueEnum
+     *
+     * @return array
+     */
+    public function getValueEnum()
+    {
+        foreach ($this->options as $key => $value) {
+            $valueKey = ($key === 'on') ? 1 : 0;
+            $options[$valueKey] = $value;
+        }
+
+        return $options;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array

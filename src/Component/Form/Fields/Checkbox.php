@@ -48,6 +48,20 @@ class Checkbox extends Item
     }
 
     /**
+     * 当前列值的枚举 valueEnum
+     *
+     * @return array
+     */
+    public function getValueEnum()
+    {
+        foreach ($this->options as $option) {
+            $options[$option['value']] = $option['label'];
+        }
+
+        return $options;
+    }
+
+    /**
      * 配置 checkbox 的样子，支持垂直vertical 和 horizontal
      *
      * @param  string $layout

@@ -368,8 +368,8 @@ class Column extends Element
         if(empty($action)) {
             $subject = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-            $startPosition = strpos($subject, 'api/');
-            $action = ($startPosition !== false) ? substr_replace($subject, '', $startPosition, strlen('api/')) : $subject;
+            $startPosition = strpos($subject, '/api/');
+            $action = ($startPosition !== false) ? substr_replace($subject, '', $startPosition, strlen('/api/')) : $subject;
     
             $endPosition = strrpos($action, '/index');
             $action = ($endPosition !== false) ? substr_replace($action, '/editable', $endPosition, strlen('/index')) : $action;
