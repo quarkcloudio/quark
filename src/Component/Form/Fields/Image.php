@@ -12,7 +12,7 @@ class Image extends Item
      *
      * @var string
      */
-    public $type = 'image';
+    public $component = 'image';
 
     /**
      * 图片上传模式，单图或多图，single|multiple

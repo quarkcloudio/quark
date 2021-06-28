@@ -22,7 +22,7 @@ class Where extends Item
      * @return void
      */
     public function __construct($name,$label = '',$callback = null) {
-        $this->type = 'input';
+        $this->component = 'input';
         $this->name = $name;
         $this->operator = 'where';
 

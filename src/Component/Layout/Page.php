@@ -28,7 +28,7 @@ class Page extends Element
      */
     public function __construct()
     {
-        $this->type = 'page';
+        $this->component = 'page';
 
         return $this;
     }

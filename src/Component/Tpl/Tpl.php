@@ -14,7 +14,7 @@ class Tpl extends Element
      */
     public function __construct($body = '')
     {
-        $this->type = 'tpl';
+        $this->component = 'tpl';
         $this->body = $body;
 
         return $this;
@@ -28,7 +28,7 @@ class Tpl extends Element
     public function jsonSerialize()
     {
         if(empty($this->key)) {
-            $this->key($this->type.$this->body, true);
+            $this->key($this->component.$this->body, true);
         }
 
         return array_merge([

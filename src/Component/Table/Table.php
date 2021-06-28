@@ -153,7 +153,7 @@ class Table extends Element
      */
     public function __construct()
     {
-        $this->type = 'table';
+        $this->component = 'table';
         $this->search = new Search;
 
         return $this;

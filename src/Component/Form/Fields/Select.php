@@ -12,7 +12,7 @@ class Select extends Item
      *
      * @var string
      */
-    public $type = 'select';
+    public $component = 'select';
 
     /**
      * 根据 options 生成子节点，推荐使用。

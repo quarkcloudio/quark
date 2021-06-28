@@ -58,7 +58,7 @@ class Space extends Element
      */
     public function __construct($size = 'small', $body = [])
     {
-        $this->type = 'space';
+        $this->component = 'space';
         $this->size = $size;
         $this->body = $body;
 

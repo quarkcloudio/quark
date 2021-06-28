@@ -177,7 +177,7 @@ class Form extends Element
      */
     public function __construct()
     {
-        $this->type = 'form';
+        $this->component = 'form';
 
         return $this;
     }

@@ -157,7 +157,7 @@ class Layout extends Element
      */
     public function __construct($title = '', $body = [])
     {
-        $this->type = 'layout';
+        $this->component = 'layout';
         $this->title = $title;
         $this->body = $body;
 

@@ -97,7 +97,7 @@ class Descriptions extends Element
      */
     public function __construct($data = null)
     {
-        $this->type = 'descriptions';
+        $this->component = 'descriptions';
         $this->data = $data;
     }
 

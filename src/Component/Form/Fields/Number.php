@@ -12,7 +12,7 @@ class Number extends Item
      *
      * @var string
      */
-    public $type = 'inputNumber';
+    public $component = 'inputNumber';
 
     /**
      * 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small

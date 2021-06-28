@@ -11,7 +11,7 @@ class Time extends Item
      *
      * @var string
      */
-    public $type = 'time';
+    public $component = 'time';
 
     /**
      * 时间显示格式

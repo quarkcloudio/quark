@@ -77,7 +77,7 @@ class StatisticCard extends Element
      * @return void
      */
     public function __construct($title = null) {
-        $this->type = 'statisticCard';
+        $this->component = 'statisticCard';
         $this->title = $title;
         $this->statisticObject = new Statistic;
     }

@@ -12,7 +12,7 @@ class Search extends Item
      *
      * @var string
      */
-    public $type = 'search';
+    public $component = 'search';
 
     /**
      * mode

@@ -11,7 +11,7 @@ class Map extends Item
      *
      * @var string
      */
-    public $type = 'map';
+    public $component = 'map';
 
     /**
      * 默认值

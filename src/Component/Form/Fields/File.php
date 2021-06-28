@@ -11,7 +11,7 @@ class File extends Item
      *
      * @var string
      */
-    public $type = 'file';
+    public $component = 'file';
 
     /**
      * 上传按钮的标题

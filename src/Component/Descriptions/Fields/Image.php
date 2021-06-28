@@ -30,7 +30,7 @@ class Image extends Item
      */ 
     public function __construct($dataIndex,$label = '')
     {
-        $this->type = 'image';
+        $this->component = 'image';
         $this->dataIndex = $dataIndex;
     }
 
@@ -42,7 +42,7 @@ class Image extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'type' => $this->type,
+            'component' => $this->component,
             'width' => $this->width,
             'height' => $this->height
         ], parent::jsonSerialize());

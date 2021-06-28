@@ -105,7 +105,7 @@ class Col extends Element
      */
     public function __construct()
     {
-        $this->type = 'col';
+        $this->component = 'col';
 
         return $this;
     }
@@ -118,7 +118,7 @@ class Col extends Element
      */
     public function flex($flex)
     {
-        $this->body = $body;
+        $this->flex = $flex;
 
         return $this;
     }

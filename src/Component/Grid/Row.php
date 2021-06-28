@@ -58,7 +58,7 @@ class Row extends Element
      */
     public function __construct()
     {
-        $this->type = 'row';
+        $this->component = 'row';
         $this->col = new Col;
 
         return $this;

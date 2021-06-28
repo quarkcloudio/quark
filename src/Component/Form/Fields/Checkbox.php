@@ -12,7 +12,7 @@ class Checkbox extends Item
      *
      * @var string
      */
-    public $type = 'checkbox';
+    public $component = 'checkbox';
 
     /**
      * 与 select 相同，根据 options 生成子节点，推荐使用。

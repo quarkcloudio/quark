@@ -78,7 +78,7 @@ class Item extends Element
      * @return void
      */
     public function __construct($name, $label = '') {
-        $this->type = 'input';
+        $this->component = 'input';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
@@ -214,7 +214,7 @@ class Item extends Element
      */
     public function input($options = [])
     {
-        $this->type = 'input';
+        $this->component = 'input';
         $this->options = $options;
 
         return $this;
@@ -228,7 +228,7 @@ class Item extends Element
      */
     public function select($options = [])
     {
-        $this->type = 'select';
+        $this->component = 'select';
 
         $data = [];
         foreach ($options as $key => $value) {
@@ -255,7 +255,7 @@ class Item extends Element
      */
     public function multipleSelect($options = [])
     {
-        $this->type = 'multipleSelect';
+        $this->component = 'multipleSelect';
 
         $data = [];
         foreach ($options as $key => $value) {
@@ -293,7 +293,7 @@ class Item extends Element
      */
     public function datetime($options = [])
     {
-        $this->type = 'datetime';
+        $this->component = 'datetime';
         $this->options = $options;
 
         return $this;
@@ -307,7 +307,7 @@ class Item extends Element
      */
     public function date($options = [])
     {
-        $this->type = 'date';
+        $this->component = 'date';
         $this->options = $options;
 
         return $this;

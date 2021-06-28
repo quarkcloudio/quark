@@ -94,7 +94,7 @@ class ToolBar extends Element
      */
     public function __construct($title = null, $subTitle = null)
     {
-        $this->type = 'toolBar';
+        $this->component = 'toolBar';
         $this->action = new Action;
         $this->title = $title;
         $this->subTitle = $subTitle;

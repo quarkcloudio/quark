@@ -114,7 +114,7 @@ class PageContainer extends Element
      */
     public function __construct($title = '', $body = [])
     {
-        $this->type = 'pageContainer';
+        $this->component = 'pageContainer';
         $this->title = $title;
         $this->body = $body;
 

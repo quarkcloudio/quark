@@ -30,7 +30,7 @@ class Link extends Item
      */ 
     public function __construct($dataIndex,$label = '')
     {
-        $this->type = 'link';
+        $this->component = 'link';
         $this->dataIndex = $dataIndex;
     }
 
@@ -42,7 +42,7 @@ class Link extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'type' => $this->type,
+            'component' => $this->component,
             'target' => $this->target,
             'href' => $this->href
         ], parent::jsonSerialize());

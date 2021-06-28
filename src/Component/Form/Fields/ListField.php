@@ -13,7 +13,7 @@ class ListField extends Item
      *
      * @var string
      */
-    public $type = 'list';
+    public $component = 'list';
 
     /**
      * 表单项

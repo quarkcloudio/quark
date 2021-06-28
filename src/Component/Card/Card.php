@@ -121,7 +121,7 @@ class Card extends Element
      */
     public function __construct($title = '', $body = [])
     {
-        $this->type = 'card';
+        $this->component = 'card';
         $this->title = $title;
         $this->body = $body;
 

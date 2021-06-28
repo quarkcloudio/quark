@@ -11,7 +11,7 @@ class Radio extends Item
      *
      * @var string
      */
-    public $type = 'radio';
+    public $component = 'radio';
 
     /**
      * 与 select 相同，根据 options 生成子节点，推荐使用。

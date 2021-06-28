@@ -16,7 +16,7 @@ class Text extends Item
      */ 
     public function __construct($dataIndex,$label = '')
     {
-        $this->type = 'text';
+        $this->component = 'text';
         $this->dataIndex = $dataIndex;
     }
 
@@ -28,7 +28,7 @@ class Text extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'type' => $this->type
+            'component' => $this->component
         ], parent::jsonSerialize());
     }
 }

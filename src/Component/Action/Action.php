@@ -147,7 +147,7 @@ class Action extends Element
      */
     public function __construct($label = '')
     {
-        $this->type = 'action';
+        $this->component = 'action';
         $this->label = $label;
 
         return $this;

@@ -70,8 +70,7 @@ class Statistic extends Element
      * @return void
      */
     public function __construct($title = null,$value = null) {
-        $this->type = 'statistic';
-
+        $this->component = 'statistic';
         $this->title = $title;
         $this->value = $value;
 

@@ -11,7 +11,7 @@ class TimeRange extends Item
      *
      * @var string
      */
-    public $type = 'timeRange';
+    public $component = 'timeRange';
 
     /**
      * 时间显示格式

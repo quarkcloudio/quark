@@ -22,7 +22,7 @@ class Group extends Item
      * @return void
      */
     public function __construct($name,$label = '',$callback = null) {
-        $this->type = 'inputGroup';
+        $this->component = 'inputGroup';
         $this->name = $name;
         $this->operator = 'group';
 

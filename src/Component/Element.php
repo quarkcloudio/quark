@@ -18,7 +18,7 @@ abstract class Element implements JsonSerializable
      *
      * @var string
      */
-    public $type;
+    public $component;
 
     /**
      * The component's style.
@@ -30,12 +30,12 @@ abstract class Element implements JsonSerializable
     /**
      * Create a new component.
      *
-     * @param  string|null  $type
+     * @param  string|null  $component
      * @return void
      */
-    public function __construct($type = null)
+    public function __construct($component = null)
     {
-        $this->type = $type ?? $this->type;
+        $this->component = $component ?? $this->component;
     }
 
     /**
@@ -75,9 +75,9 @@ abstract class Element implements JsonSerializable
      *
      * @return string
      */
-    public function type()
+    public function component()
     {
-        return $this->type;
+        return $this->component;
     }
 
     /**
@@ -122,7 +122,7 @@ abstract class Element implements JsonSerializable
     {
         return array_merge([
             'key' => $this->key,
-            'type' => $this->type(),
+            'component' => $this->component(),
             'style' => $this->style
         ]);
     }

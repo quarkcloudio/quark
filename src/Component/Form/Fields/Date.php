@@ -11,5 +11,5 @@ class Date extends Item
      *
      * @var string
      */
-    public $type = 'date';
+    public $component = 'date';
 }

@@ -63,7 +63,7 @@ class Login extends Element
      */
     public function __construct()
     {
-        $this->type = 'login';
+        $this->component = 'login';
 
         return $this;
     }

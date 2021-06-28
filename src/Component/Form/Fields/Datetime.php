@@ -11,5 +11,5 @@ class Datetime extends Item
      *
      * @var string
      */
-    public $type = 'datetime';
+    public $component = 'datetime';
 }

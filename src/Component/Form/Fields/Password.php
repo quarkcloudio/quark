@@ -9,7 +9,7 @@ class Password extends Text
      *
      * @var string
      */
-    public $type = 'password';
+    public $component = 'password';
 
     /**
      * 组件样式

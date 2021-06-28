@@ -11,7 +11,7 @@ class Display extends Item
      *
      * @var string
      */
-    public $type = 'display';
+    public $component = 'display';
 
     /**
      * 初始化组件

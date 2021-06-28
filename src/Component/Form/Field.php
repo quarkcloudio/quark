@@ -47,7 +47,7 @@ class Field
      */
     public function __construct()
     {
-        $this->type = 'field';
+        $this->component = 'field';
 
         return $this;
     }

@@ -22,7 +22,7 @@ class Scope extends Item
      * @return void
      */
     public function __construct($name,$label = '',$callback = null) {
-        $this->type = 'select';
+        $this->component = 'select';
         $this->name = $name;
         $this->operator = 'scope';
 

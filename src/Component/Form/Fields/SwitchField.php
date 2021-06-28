@@ -11,7 +11,7 @@ class SwitchField extends Item
      *
      * @var string
      */
-    public $type = 'switch';
+    public $component = 'switch';
 
     /**
      * 设置开关属性

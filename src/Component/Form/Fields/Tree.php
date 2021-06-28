@@ -11,7 +11,7 @@ class Tree extends Item
      *
      * @var string
      */
-    public $type = 'tree';
+    public $component = 'tree';
 
     /**
      * 配置树形组件数据
