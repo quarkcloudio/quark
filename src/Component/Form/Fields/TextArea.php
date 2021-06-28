@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-class TextArea extends Text
+class TextArea extends Input
 {
     /**
      * 组件类型

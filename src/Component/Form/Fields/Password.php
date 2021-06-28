@@ -2,7 +2,7 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-class Password extends Text
+class Password extends Input
 {
     /**
      * 组件类型

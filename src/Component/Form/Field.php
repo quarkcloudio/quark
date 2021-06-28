@@ -12,7 +12,7 @@ class Field
     public static $formFields = [
         'hidden' => Fields\Hidden::class,
         'display' => Fields\Display::class,
-        'text' => Fields\Text::class,
+        'input' => Fields\Input::class,
         'password' => Fields\Password::class,
         'textarea' => Fields\TextArea::class,
         'textArea' => Fields\TextArea::class,
