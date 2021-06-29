@@ -14,7 +14,7 @@ class In extends Item
      * @return void
      */
     public function __construct($name,$label = '') {
-        $this->component = 'input';
+        $this->component = 'text';
         $this->name = $name;
         $this->operator = 'in';
 

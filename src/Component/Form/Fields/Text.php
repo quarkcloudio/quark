@@ -5,14 +5,14 @@ namespace QuarkCMS\Quark\Component\Form\Fields;
 use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
-class Input extends Item
+class Text extends Item
 {
     /**
      * 组件类型
      *
      * @var string
      */
-    public $component = 'input';
+    public $component = 'text';
 
     /**
      * 带标签的 input，设置后置标签。例如：'http://'

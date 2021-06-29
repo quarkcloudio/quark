@@ -78,7 +78,7 @@ class Item extends Element
      * @return void
      */
     public function __construct($name, $label = '') {
-        $this->component = 'input';
+        $this->component = 'text';
         $this->name = $name;
 
         if(empty($label) || !count($label)) {
