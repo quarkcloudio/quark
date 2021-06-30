@@ -11,7 +11,7 @@ class Hidden extends Item
      *
      * @var string
      */
-    public $component = 'hidden';
+    public $component = 'hiddenField';
 
     /**
      * 初始化隐藏域组件

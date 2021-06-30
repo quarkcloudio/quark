@@ -12,7 +12,7 @@ class Text extends Item
      *
      * @var string
      */
-    public $component = 'text';
+    public $component = 'textField';
 
     /**
      * 带标签的 input，设置后置标签。例如：'http://'

@@ -11,7 +11,7 @@ class DateRange extends Item
      *
      * @var string
      */
-    public $component = 'dateRange';
+    public $component = 'dateRangeField';
 
     /**
      * 默认值

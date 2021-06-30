@@ -11,5 +11,5 @@ class Date extends Item
      *
      * @var string
      */
-    public $component = 'date';
+    public $component = 'dateField';
 }

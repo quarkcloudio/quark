@@ -11,7 +11,7 @@ class Editor extends Item
      *
      * @var string
      */
-    public $component = 'editor';
+    public $component = 'editorField';
 
     /**
      * 组件样式

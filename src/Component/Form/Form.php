@@ -3,7 +3,6 @@
 namespace QuarkCMS\Quark\Component\Form;
 
 use QuarkCMS\Quark\Component\Element;
-use Closure;
 use Exception;
 
 class Form extends Element
@@ -272,18 +271,6 @@ class Form extends Element
                 if($value !== null) {
                     $data[$item->name] = $value;
                 }
-
-                // when中的变量
-                if(!empty($item->when)) {
-                    foreach ($item->when as $when) {
-                        foreach ($when['items'] as $whenItem) {
-                            $whenValue = $this->parseInitialValue($whenItem,$initialValues);
-                            if($whenValue !== null) {
-                                $data[$whenItem->name] = $whenValue;
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -488,20 +475,6 @@ class Form extends Element
                     unset($data[$item->name]);
                 }
             }
-
-            // when中的变量
-            if(!empty($item->when)) {
-                foreach ($item->when as $when) {
-                    foreach ($when['items'] as $whenItem) {
-                        // 删除忽略的值
-                        if($whenItem->ignore) {
-                            if(isset($data[$whenItem->name])) {
-                                unset($data[$whenItem->name]);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         foreach ($data as $key => $value) {
@@ -597,7 +570,7 @@ class Form extends Element
             'labelCol' => $this->labelCol,
             'wrapperCol' => $this->wrapperCol,
             'buttonWrapperCol' => $this->buttonWrapperCol,
-            'items' => $this->items,
+            'body' => $this->items,
         ], parent::jsonSerialize());
     }
 }

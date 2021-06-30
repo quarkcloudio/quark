@@ -12,7 +12,7 @@ class Icon extends Item
      *
      * @var string
      */
-    public $component = 'icon';
+    public $component = 'iconField';
 
     /**
      * 与 select 相同，根据 options 生成子节点，推荐使用。
