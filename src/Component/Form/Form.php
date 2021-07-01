@@ -288,6 +288,7 @@ class Form extends Element
     public function labelAlign($labelAlign)
     {
         $this->labelAlign = $labelAlign;
+
         return $this;
     }
 
@@ -300,6 +301,7 @@ class Form extends Element
     public function name($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -312,6 +314,7 @@ class Form extends Element
     public function preserve($preserve)
     {
         $this->preserve = $preserve;
+
         return $this;
     }
 
@@ -324,6 +327,7 @@ class Form extends Element
     public function requiredMark($requiredMark)
     {
         $this->requiredMark = $requiredMark;
+
         return $this;
     }
 
@@ -336,6 +340,7 @@ class Form extends Element
     public function scrollToFirstError($scrollToFirstError)
     {
         $this->scrollToFirstError = $scrollToFirstError;
+
         return $this;
     }
 
@@ -348,6 +353,7 @@ class Form extends Element
     public function size($size)
     {
         $this->size = $size;
+
         return $this;
     }
 
@@ -360,6 +366,7 @@ class Form extends Element
     public function dateFormatter($dateFormatter)
     {
         $this->dateFormatter = $dateFormatter;
+
         return $this;
     }
 
@@ -382,6 +389,7 @@ class Form extends Element
         }
 
         $this->layout = $layout;
+
         return $this;
     }
 
@@ -398,6 +406,7 @@ class Form extends Element
         }
 
         $this->labelCol = $labelCol;
+
         return $this;
     }
 
@@ -414,6 +423,7 @@ class Form extends Element
         }
 
         $this->wrapperCol = $wrapperCol;
+
         return $this;
     }
 
@@ -430,6 +440,7 @@ class Form extends Element
         }
 
         $this->buttonWrapperCol = $buttonWrapperCol;
+
         return $this;
     }
 
@@ -442,6 +453,7 @@ class Form extends Element
     public function api($api)
     {
         $this->api = $api;
+
         return $this;
     }
 
@@ -454,6 +466,20 @@ class Form extends Element
     public function items($items)
     {
         $this->items = $items;
+
+        return $this;
+    }
+
+    /**
+     *  与items方法相同
+     *
+     * @param  array  $items
+     * @return $this
+     */
+    public function body($items)
+    {
+        $this->items = $items;
+
         return $this;
     }
 

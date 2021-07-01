@@ -70,6 +70,13 @@ class Action extends Element
     public $actionType;
 
     /**
+     * 当action 的作用类型为submit的时候，可以指定提交哪个表格，submitForm为提交表单的key值，为空时提交当前表单
+     *
+     * @var string
+     */
+    public $submitForm = null;
+
+    /**
      * 触发行为跳转链接
      *
      * @var string
@@ -88,7 +95,7 @@ class Action extends Element
      *
      * @var string
      */
-    public $showStyle = 'default';
+    public $type = 'default';
 
     /**
      * 触发行为打开弹窗
@@ -237,13 +244,13 @@ class Action extends Element
      * @param  bool  $danger
      * @return $this
      */
-    public function showStyle($type = 'default',$danger = false)
+    public function type($type = 'default',$danger = false)
     {
         if(!in_array($type,['primary', 'ghost', 'dashed', 'link', 'text', 'default'])) {
             throw new \Exception("Argument must be in 'primary', 'ghost', 'dashed', 'link', 'text', 'default'!");
         }
 
-        $this->showStyle = $type;
+        $this->type = $type;
         $this->danger = $danger;
         return $this;
     }
@@ -278,6 +285,18 @@ class Action extends Element
         return $this;
     }
 
+    /**
+     * 当action 的作用类型为submit的时候，可以指定提交哪个表格，submitForm为提交表单的key值，为空时提交当前表单
+     *
+     * @param  string  $formKey
+     * @return $this
+     */
+    public function submitForm($formKey)
+    {
+        $this->submitForm = $formKey;
+
+        return $this;
+    }
 
     /**
      * 点击跳转的地址，指定此属性 button 的行为和 a 链接一致
@@ -417,14 +436,15 @@ class Action extends Element
             'actionType' => $this->actionType,
             'href' => $this->href,
             'target' => $this->target,
-            'showStyle' => $this->showStyle,
+            'type' => $this->type,
             'modal' => $this->modal,
             'drawer' => $this->drawer,
             'confirmTitle' => $this->confirmTitle,
             'confirmText' => $this->confirmText,
             'confirmType' => $this->confirmType,
             'api' => $this->api,
-            'reload' => $this->reload
+            'reload' => $this->reload,
+            'submitForm' => $this->submitForm
         ], parent::jsonSerialize());
     }
 }
