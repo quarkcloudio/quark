@@ -2,7 +2,9 @@
 
 namespace QuarkCMS\Quark\Component\Action;
 
+use QuarkCMS\Quark\Component\Action\Modal;
 use QuarkCMS\Quark\Component\Element;
+use Closure;
 
 class Action extends Element
 {
@@ -160,7 +162,6 @@ class Action extends Element
         return $this;
     }
 
-
     /**
      * 将按钮宽度调整为其父宽度的选项
      *
@@ -170,6 +171,7 @@ class Action extends Element
     public function block($block = true)
     {
         $this->block = $block;
+
         return $this;
     }
 
@@ -182,6 +184,7 @@ class Action extends Element
     public function danger($danger = true)
     {
         $this->danger = $danger;
+
         return $this;
     }
 
@@ -194,6 +197,7 @@ class Action extends Element
     public function disabled($disabled = true)
     {
         $this->disabled = $disabled;
+
         return $this;
     }
 
@@ -206,6 +210,7 @@ class Action extends Element
     public function ghost($ghost = true)
     {
         $this->ghost = $ghost;
+
         return $this;
     }
 
@@ -218,6 +223,7 @@ class Action extends Element
     public function icon($icon = null)
     {
         $this->icon = 'icon-'.$icon;
+
         return $this;
     }
 
@@ -234,6 +240,7 @@ class Action extends Element
         }
 
         $this->shape = $shape;
+
         return $this;
     }
 
@@ -252,6 +259,7 @@ class Action extends Element
 
         $this->type = $type;
         $this->danger = $danger;
+
         return $this;
     }
 
@@ -269,6 +277,7 @@ class Action extends Element
         }
 
         $this->size = $size;
+
         return $this;
     }
 
@@ -307,6 +316,7 @@ class Action extends Element
     public function href($href)
     {
         $this->href = $href;
+
         return $this;
     }
 
@@ -323,6 +333,7 @@ class Action extends Element
         }
 
         $this->target = $target;
+
         return $this;
     }
 
@@ -343,26 +354,29 @@ class Action extends Element
     }
 
     /**
-     * 弹窗表单
+     * 弹窗
      *
-     * @param  string|array  $modal
+     * @param  Closure  $modal
      * @return $this
      */
-    public function modalForm($modal)
+    public function modal(Closure $callback = null)
     {
-        $this->modal = $modal;
+        $this->modal = $callback(new Modal);
+        $this->actionType = 'modal';
+
         return $this;
     }
 
     /**
-     * 抽屉表单
+     * 抽屉
      *
      * @param  string|array  $drawer
      * @return $this
      */
-    public function drawerForm($drawer)
+    public function drawer($drawer)
     {
         $this->drawer = $drawer;
+
         return $this;
     }
 
@@ -410,6 +424,7 @@ class Action extends Element
     public function reload($reload)
     {
         $this->reload = $reload;
+
         return $this;
     }
 
