@@ -98,6 +98,13 @@ class Modal extends Element
     public $zIndex = 1000;
 
     /**
+     * 弹窗行为
+     *
+     * @var array
+     */
+    public $actions = [];
+
+    /**
      * 初始化容器
      *
      * @param  string  $name
@@ -296,6 +303,19 @@ class Modal extends Element
     }
 
     /**
+     * 弹窗行为
+     *
+     * @param  array  $actions
+     * @return $this
+     */
+    public function actions($actions)
+    {
+        $this->actions = $actions;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -316,7 +336,8 @@ class Modal extends Element
             'maskStyle' => $this->maskStyle,
             'visible' => $this->visible,
             'width' => $this->width,
-            'zIndex' => $this->zIndex
+            'zIndex' => $this->zIndex,
+            'actions' => $this->actions
         ], parent::jsonSerialize());
     }
 }

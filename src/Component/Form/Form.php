@@ -134,6 +134,13 @@ class Form extends Element
     public $items = null;
 
     /**
+     * 行为
+     *
+     * @var array
+     */
+    public $actions = null;
+
+    /**
      * 表单字段控件
      *
      * @var array
@@ -571,7 +578,9 @@ class Form extends Element
     public function jsonSerialize()
     {
         // 设置组件唯一标识
-        $this->key();
+        if(empty($this->key)) {
+            $this->key();
+        }
 
         // 为空，初始化表单数据
         if(empty($this->initialValues)) {

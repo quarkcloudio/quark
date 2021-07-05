@@ -149,6 +149,13 @@ class Action extends Element
     public $reload;
 
     /**
+     * 执行成功后关闭对应的弹窗
+     *
+     * @var string
+     */
+    public $close = true;
+
+    /**
      * 初始化容器
      *
      * @param  string  $label
@@ -459,7 +466,8 @@ class Action extends Element
             'confirmType' => $this->confirmType,
             'api' => $this->api,
             'reload' => $this->reload,
-            'submitForm' => $this->submitForm
+            'submitForm' => $this->submitForm,
+            'close' => $this->close
         ], parent::jsonSerialize());
     }
 }
