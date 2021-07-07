@@ -149,13 +149,6 @@ class Action extends Element
     public $reload;
 
     /**
-     * 执行成功后关闭对应的弹窗
-     *
-     * @var string
-     */
-    public $close = true;
-
-    /**
      * 初始化容器
      *
      * @param  string  $label
@@ -377,12 +370,13 @@ class Action extends Element
     /**
      * 抽屉
      *
-     * @param  string|array  $drawer
+     * @param  Closure  $drawer
      * @return $this
      */
-    public function drawer($drawer)
+    public function drawer(Closure $callback = null)
     {
-        $this->drawer = $drawer;
+        $this->drawer = $callback(new Drawer);
+        $this->actionType = 'drawer';
 
         return $this;
     }
@@ -466,8 +460,7 @@ class Action extends Element
             'confirmType' => $this->confirmType,
             'api' => $this->api,
             'reload' => $this->reload,
-            'submitForm' => $this->submitForm,
-            'close' => $this->close
+            'submitForm' => $this->submitForm
         ], parent::jsonSerialize());
     }
 }

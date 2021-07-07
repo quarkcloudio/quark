@@ -127,6 +127,13 @@ class Form extends Element
     public $api = null;
 
     /**
+     * 获取表单数据
+     *
+     * @var string
+     */
+    public $initApi = null;
+
+    /**
      * 表单项
      *
      * @var array
@@ -465,6 +472,19 @@ class Form extends Element
     }
 
     /**
+     *  获取表单数据
+     *
+     * @param  string  $initApi
+     * @return $this
+     */
+    public function initApi($initApi)
+    {
+        $this->initApi = $initApi;
+
+        return $this;
+    }
+
+    /**
      *  表单项
      *
      * @param  array  $items
@@ -589,6 +609,7 @@ class Form extends Element
 
         return array_merge([
             'api' => $this->api,
+            'initApi' => $this->initApi,
             'colon' => $this->colon,
             'initialValues' => $this->initialValues,
             'labelAlign' => $this->labelAlign,
