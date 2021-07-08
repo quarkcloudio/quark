@@ -103,21 +103,21 @@ class Form extends Element
      *
      * @var array
      */
-    public $labelCol = ['span' => 2];
+    public $labelCol = ['span' => 3];
 
     /**
      * 需要为输入控件设置布局样式时，使用该属性，用法同 labelCol
      *
      * @var string
      */
-    public $wrapperCol = ['span' => 14];
+    public $wrapperCol = ['span' => 21];
 
     /**
      * 表单按钮布局样式
      *
      * @var string
      */
-    public $buttonWrapperCol = ['offset' => 2, 'span' => 22 ];
+    public $buttonWrapperCol = ['offset' => 3, 'span' => 21 ];
 
     /**
      * 表格提交的地址
