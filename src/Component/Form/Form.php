@@ -138,7 +138,7 @@ class Form extends Element
      *
      * @var array
      */
-    public $items = null;
+    public $items = [];
 
     /**
      * 行为
@@ -240,9 +240,8 @@ class Form extends Element
      * @param  object  $item
      * @return $this
      */
-    public function parseInitialValue($item,$initialValues)
+    public function parseInitialValue($item, $initialValues)
     {
-        $value = null;
         if(isset($item->name)) {
 
             if(isset($item->defaultValue)) {
@@ -256,17 +255,9 @@ class Form extends Element
             if(isset($item->value)) {
                 $value = $item->value;
             }
-
-            if(!empty($value)) {
-                if(is_string($value)) {
-                    if(count(explode('[',$value))>1 || count(explode('{',$value))>1) {
-                        $value = json_decode($value, true);
-                    }
-                }
-            }
         }
 
-        return $value;
+        return $value ?? null;
     }
 
     /**
@@ -275,17 +266,26 @@ class Form extends Element
      * @param  array  $initialValues
      * @return $this
      */
-    public function initialValues($initialValues = null)
+    public function initialValues($initialValues = [])
     {
-        $data = [];
+        $data = $initialValues;
 
-        if(isset($this->items)) {
-            foreach ($this->items as $item) {
-                $value = $this->parseInitialValue($item,$initialValues);
-                if($value !== null) {
-                    $data[$item->name] = $value;
+        foreach ($this->items as $item) {
+            $value = $this->parseInitialValue($item,$initialValues);
+
+            if($value !== null) {
+                $data[$item->name] = $value;
+            }
+        }
+
+        foreach ($data as $key => $value) {
+            if(is_string($value)) {
+                if(count(explode('[',$value))>1 || count(explode('{',$value))>1) {
+                    $value = json_decode($value, true);
                 }
             }
+
+            $data[$key] = $value;
         }
 
         $this->initialValues = $data;

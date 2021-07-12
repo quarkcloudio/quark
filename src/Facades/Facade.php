@@ -31,6 +31,8 @@ class Facade
         'form' => \QuarkCMS\Quark\Component\Form\Form::class,
         'field' => \QuarkCMS\Quark\Component\Form\Field::class,
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
+        'tabs' => \QuarkCMS\Quark\Component\Tabs\Tabs::class,
+        'tabPane' => \QuarkCMS\Quark\Component\Tabs\TabPane::class,
     ];
 
     /**
