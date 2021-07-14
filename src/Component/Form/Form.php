@@ -33,14 +33,14 @@ class Form extends Element
      *
      * @var array
      */
-    public $values = null;
+    public $values = [];
 
     /**
      * 解析完之后表单数据
      *
      * @var array
      */
-    public $initialValues = null;
+    public $initialValues = [];
 
     /**
      * label 标签的文本对齐方式,left | right
