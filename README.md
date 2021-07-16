@@ -18,6 +18,9 @@ Quark 是一个可以帮你快速组合页面的工具；它提供的丰富组�
 ``` bash
 # 安装依赖
 composer require quarkcms/quark
+
+# 发布静态资源
+php vendor\quarkcms\quark\src\Console\PublishCommand.php
 ```
 
 ## 技术支持

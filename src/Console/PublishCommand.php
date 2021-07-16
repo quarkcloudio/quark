@@ -35,4 +35,4 @@ if(is_array($files)) {
     }
 }
 
-print_r('Update the resources successed!');
+print_r('Publish the resources to [ ' . $path . ' ] successed!');
