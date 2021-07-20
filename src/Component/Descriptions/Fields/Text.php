@@ -14,8 +14,9 @@ class Text extends Item
      * @param  string  $label
      * @return void
      */ 
-    public function __construct($dataIndex,$label = '')
+    public function __construct($dataIndex, $label = '')
     {
+        $this->label = $label ?? $dataIndex;
         $this->component = 'text';
         $this->dataIndex = $dataIndex;
     }

@@ -181,7 +181,7 @@ class Statistic extends Element
     public function jsonSerialize()
     {
         if(empty($this->key)) {
-            $this->key(json_encode($this), true);
+            $this->key(json_encode($this->title), true);
         }
 
         return array_merge([
