@@ -674,19 +674,48 @@ class Item extends Element
      */
     public function when(...$value)
     {
-        $form = new Form();
         if(count($value) == 2) {
-            $when['operator'] = '=';
-            $when['value'] = $value[0];
-            $value[1]($form);
+            $operator = '=';
+            $option = $value[0];
+            $whenItem['body'] = $value[1]();
         } elseif(count($value) == 3) {
-            $when['operator'] = $value[0];
-            $when['value'] = $value[1];
-            $value[2]($form);
+            $operator = $value[0];
+            $option = $value[1];
+            $whenItem['body'] = $value[2]();
         }
 
-        $when['items'] = $form->items;
-        $this->when[] = $when;
+        switch ($operator) {
+            case '=':
+                $whenItem['condition'] = "<%=(" . $this->name . ").toString() === '" . $option . "' %>";
+              break;
+            case '>':
+                $whenItem['condition'] = "<%=(" . $this->name . ").toString() > '" . $option . "' %>";
+              break;
+            case '<':
+                $whenItem['condition'] = "<%=(" . $this->name . ").toString() < '" . $option . "' %>";
+              break;
+            case '<=':
+                $whenItem['condition'] = "<%=(" . $this->name . ").toString() <= '" . $option . "' %>";
+              break;
+            case '>=':
+                $whenItem['condition'] = "<%=(" . $this->name . ").toString() => '" . $option . "' %>";
+              break;
+            case 'has':
+                $whenItem['condition'] = "<%=((" . $this->name . ").indexOf('" . $option . "') !=-1) %>";
+              break;
+            case 'in':
+                $whenItem['condition'] = "<%=(" . json_encode($option) . ".indexOf(" . $this->name . ") !=-1) %>";
+              break;
+            default:
+                $whenItem['condition'] = "<%=(" . $this->name . ").toString() === '" . $option . "' %>";
+              break;
+          }
+
+        $this->whenItem[] = $whenItem;
+        $when['component'] = 'when';
+        $when['items'] = $this->whenItem;
+
+        $this->when = $when;
         return $this;
     }
 
