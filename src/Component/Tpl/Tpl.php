@@ -7,6 +7,13 @@ use QuarkCMS\Quark\Component\Element;
 class Tpl extends Element
 {
     /**
+     * 内容
+     *
+     * @var bool|string|number|array
+     */
+    public $body = null;
+
+    /**
      * 初始化容器
      *
      * @param  string  $body
@@ -15,6 +22,19 @@ class Tpl extends Element
     public function __construct($body = '')
     {
         $this->component = 'tpl';
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * 内容
+     *
+     * @param  bool|string|number|array  $body
+     * @return $this
+     */
+    public function body($body)
+    {
         $this->body = $body;
 
         return $this;
@@ -32,6 +52,7 @@ class Tpl extends Element
         }
 
         return array_merge([
+            'body' => $this->body,
         ], parent::jsonSerialize());
     }
 }
