@@ -686,19 +686,19 @@ class Item extends Element
 
         switch ($operator) {
             case '=':
-                $whenItem['condition'] = "<%=(" . $this->name . ").toString() === '" . $option . "' %>";
+                $whenItem['condition'] = "<%=String(" . $this->name . ") === '" . $option . "' %>";
               break;
             case '>':
-                $whenItem['condition'] = "<%=(" . $this->name . ").toString() > '" . $option . "' %>";
+                $whenItem['condition'] = "<%=String(" . $this->name . ") > '" . $option . "' %>";
               break;
             case '<':
-                $whenItem['condition'] = "<%=(" . $this->name . ").toString() < '" . $option . "' %>";
+                $whenItem['condition'] = "<%=String(" . $this->name . ") < '" . $option . "' %>";
               break;
             case '<=':
-                $whenItem['condition'] = "<%=(" . $this->name . ").toString() <= '" . $option . "' %>";
+                $whenItem['condition'] = "<%=String(" . $this->name . ") <= '" . $option . "' %>";
               break;
             case '>=':
-                $whenItem['condition'] = "<%=(" . $this->name . ").toString() => '" . $option . "' %>";
+                $whenItem['condition'] = "<%=String(" . $this->name . ") => '" . $option . "' %>";
               break;
             case 'has':
                 $whenItem['condition'] = "<%=((" . $this->name . ").indexOf('" . $option . "') !=-1) %>";
@@ -707,7 +707,7 @@ class Item extends Element
                 $whenItem['condition'] = "<%=(" . json_encode($option) . ".indexOf(" . $this->name . ") !=-1) %>";
               break;
             default:
-                $whenItem['condition'] = "<%=(" . $this->name . ").toString() === '" . $option . "' %>";
+                $whenItem['condition'] = "<%=String(" . $this->name . ") === '" . $option . "' %>";
               break;
           }
 
