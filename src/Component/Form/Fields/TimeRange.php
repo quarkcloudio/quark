@@ -25,7 +25,7 @@ class TimeRange extends Item
      *
      * @var array
      */
-    public $value = [null,null];
+    public $defaultValue = [null,null];
 
     /**
      * 设置时间显示格式

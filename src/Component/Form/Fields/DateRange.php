@@ -18,5 +18,5 @@ class DateRange extends Item
      *
      * @var string
      */
-    public $value = [null,null];
+    public $defaultValue = [null,null];
 }
