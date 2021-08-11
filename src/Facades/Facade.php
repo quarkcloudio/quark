@@ -34,6 +34,9 @@ class Facade
         'login' => \QuarkCMS\Quark\Component\Login\Login::class,
         'tabs' => \QuarkCMS\Quark\Component\Tabs\Tabs::class,
         'tabPane' => \QuarkCMS\Quark\Component\Tabs\TabPane::class,
+        'lists' => \QuarkCMS\Quark\Component\Lists\Lists::class,
+        'list' => \QuarkCMS\Quark\Component\Lists\Lists::class,
+        'meta' => \QuarkCMS\Quark\Component\Lists\Meta::class
     ];
 
     /**
