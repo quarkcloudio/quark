@@ -14,17 +14,6 @@ class Hidden extends Item
     public $component = 'hiddenField';
 
     /**
-     * 初始化隐藏域组件
-     *
-     * @param  string  $name
-     * @return void
-     */ 
-    function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * 组件json序列化
      *
      * @return array
