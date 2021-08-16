@@ -19,7 +19,7 @@ class Select extends Item
      *
      * @var array
      */
-    public $options;
+    public $options = [];
 
     /**
      * 设置 Select 的模式为多选或标签，multiple | tags

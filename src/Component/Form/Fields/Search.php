@@ -47,7 +47,7 @@ class Search extends Item
      *
      * @var array
      */
-    public $options;
+    public $options = [];
 
     /**
      * api
