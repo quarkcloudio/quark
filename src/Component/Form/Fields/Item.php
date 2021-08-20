@@ -701,7 +701,7 @@ class Item extends Element
                 $whenItem['condition'] = "<%=String(" . $this->name . ") => '" . $option . "' %>";
               break;
             case 'has':
-                $whenItem['condition'] = "<%=((" . $this->name . ").indexOf('" . $option . "') !=-1) %>";
+                $whenItem['condition'] = "<%=(String(" . $this->name . ").indexOf('" . $option . "') !=-1) %>";
               break;
             case 'in':
                 $whenItem['condition'] = "<%=(" . json_encode($option) . ".indexOf(" . $this->name . ") !=-1) %>";
@@ -709,7 +709,11 @@ class Item extends Element
             default:
                 $whenItem['condition'] = "<%=String(" . $this->name . ") === '" . $option . "' %>";
               break;
-          }
+        }
+
+        $whenItem['condition_name'] = $this->name;
+        $whenItem['condition_operator'] = $operator;
+        $whenItem['condition_option'] = $option;
 
         $this->whenItem[] = $whenItem;
         $when['component'] = 'when';
