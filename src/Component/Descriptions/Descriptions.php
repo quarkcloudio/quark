@@ -51,6 +51,20 @@ class Descriptions extends Element
     public $column = 1;
 
     /**
+     * 列
+     *
+     * @var array
+     */
+    public $columns = [];
+
+    /**
+     * 数据
+     *
+     * @var array
+     */
+    public $dataSource = [];
+
+    /**
      * 设置列表的大小。可以设置为 middle 、small, 或不填（只有设置 bordered={true} 生效）,default | middle | small
      *
      * @var string
@@ -77,6 +91,13 @@ class Descriptions extends Element
      * @var array
      */
     public $items = null;
+
+    /**
+     * 行为
+     *
+     * @var array
+     */
+    public $actions = null;
 
     /**
      * 字段控件
@@ -190,6 +211,30 @@ class Descriptions extends Element
     }
 
     /**
+     * 列
+     *
+     * @param number $columns
+     * @return $this
+     */
+    public function columns($columns)
+    {
+        $this->columns = $columns;
+        return $this;
+    }
+
+    /**
+     * 数据
+     *
+     * @param array $dataSource
+     * @return $this
+     */
+    public function dataSource($dataSource)
+    {
+        $this->dataSource = $dataSource;
+        return $this;
+    }
+
+    /**
      * 数据项
      *
      * @param array $items
@@ -212,14 +257,27 @@ class Descriptions extends Element
     }
 
     /**
-     * 获取注册类
+     * 行为
+     *
+     * @param array $actions
+     * @return $this
+     */
+    public function actions($actions)
+    {
+        $this->actions = $actions;
+
+        return $this;
+    }
+
+    /**
+     * 获取行为类
      *
      * @param string $method
      * @return bool|mixed
      */
     public static function getCalledClass($method)
     {
-        $class = Arr::get(static::$classFields, $method);
+        $class = static::$classFields[$method];
 
         if (class_exists($class)) {
             return $class;
@@ -229,7 +287,7 @@ class Descriptions extends Element
     }
 
     /**
-     * 动态调用类
+     * 动态调用行为类
      *
      * @param string $method
      * @return bool|mixed
@@ -238,9 +296,11 @@ class Descriptions extends Element
     {
         if ($className = static::getCalledClass($method)) {
 
-            $column = Arr::get($parameters, 0, ''); //[0];
-            $element = new $className($column, array_slice($parameters, 1));
-            $this->items[] = $element;
+            $column = $parameters[0]; // 列字段
+            $label = $parameters[1] ?? null; // 标题
+            $callback = $parameters[2] ?? null; // 回调函数
+
+            $element = new $className($column, $label, $callback);
 
             return $element;
         }
@@ -283,14 +343,17 @@ class Descriptions extends Element
 
         return array_merge([
             'title' => $this->title,
-            'tooltip' =>$this->tooltip,
-            'loading' =>$this->loading,
-            'bordered' =>$this->bordered,
-            'column' =>$this->column,
-            'size' =>$this->size,
+            'tooltip' => $this->tooltip,
+            'loading' => $this->loading,
+            'bordered' => $this->bordered,
+            'column' => $this->column,
+            'columns' => $this->columns,
+            'size' => $this->size,
             'layout' => $this->layout,
-            'colon' =>$this->colon,
-            'items' => $this->items
+            'colon' => $this->colon,
+            'items' => $this->items,
+            'dataSource' => $this->dataSource,
+            'actions' => $this->actions
         ], parent::jsonSerialize());
     }
 }
