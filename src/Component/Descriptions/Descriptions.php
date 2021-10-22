@@ -105,9 +105,9 @@ class Descriptions extends Element
      * @var array
      */
     public static $classFields = [
-        'text' => QuarkCMS\Quark\Component\Descriptions\Fields\Text::class,
-        'link' => QuarkCMS\Quark\Component\Descriptions\Fields\Link::class,
-        'image' => QuarkCMS\Quark\Component\Descriptions\Fields\Image::class,
+        'text' => Fields\Text::class,
+        'image' => Fields\Image::class,
+        'link' => Fields\Link::class,
     ];
 
     /**
