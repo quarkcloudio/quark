@@ -36,7 +36,8 @@ class Facade
         'tabPane' => \QuarkCMS\Quark\Component\Tabs\TabPane::class,
         'lists' => \QuarkCMS\Quark\Component\Lists\Lists::class,
         'list' => \QuarkCMS\Quark\Component\Lists\Lists::class,
-        'meta' => \QuarkCMS\Quark\Component\Lists\Meta::class
+        'meta' => \QuarkCMS\Quark\Component\Lists\Meta::class,
+        'divider' => \QuarkCMS\Quark\Component\Divider\Divider::class
     ];
 
     /**

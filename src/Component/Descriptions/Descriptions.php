@@ -347,10 +347,10 @@ class Descriptions extends Element
             'loading' => $this->loading,
             'bordered' => $this->bordered,
             'column' => $this->column,
-            'columns' => $this->columns,
             'size' => $this->size,
             'layout' => $this->layout,
             'colon' => $this->colon,
+            'columns' => $this->columns,
             'items' => $this->items,
             'dataSource' => $this->dataSource,
             'actions' => $this->actions
