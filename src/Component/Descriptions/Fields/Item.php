@@ -29,6 +29,20 @@ class Item extends Element
     public $span = 1;
 
     /**
+     * 格式化的类型
+     *
+     * @var string
+     */
+    public $valueType = 'text';
+
+    /**
+     * 当前列值的枚举
+     *
+     * @var string
+     */
+    public $valueEnum = null;
+
+    /**
      * 返回数据的 key 与 ProDescriptions 的 request 配合使用，用于配置式的定义列表
      *
      * @var string
@@ -117,6 +131,8 @@ class Item extends Element
             'label' => $this->label,
             'tooltip' => $this->tooltip,
             'span' => $this->span,
+            'valueType' => $this->valueType,
+            'valueEnum' => $this->valueEnum,
             'dataIndex' => $this->dataIndex,
             'value' => $this->value
         ], parent::jsonSerialize());
