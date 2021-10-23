@@ -153,9 +153,9 @@ class StatisticCard extends Element
      * @param  array  $statistic
      * @return $this
      */
-    public function statistic($callback)
+    public function statistic($statistic)
     {
-        $this->statistic = gettype($callback) == 'object' ? $callback($this->statisticObject) : $callback;
+        $this->statistic = $statistic;
 
         return $this;
     }

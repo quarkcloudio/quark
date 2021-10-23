@@ -4,172 +4,37 @@ namespace QuarkCMS\Quark\Component\Chart;
 
 use QuarkCMS\Quark\Component\Element;
 
-class Line extends Element
+class Line extends Item
 {
     /**
-     * 数据
+     * 是否平滑
      *
-     * @var array
+     * @var bool
      */
-    public $data = [];
-
-    /**
-     * 内边距
-     *
-     * @var string
-     */
-    public $padding = 'auto';
-
-    /**
-     * X轴字段
-     *
-     * @var string
-     */
-    public $xField = null;
-
-    /**
-     * y轴字段
-     *
-     * @var string
-     */
-    public $yField = null;
-
-    /**
-     * 设置数值的后缀
-     *
-     * @var array|string
-     */
-    public $suffix = null;
-
-    /**
-     * 数值的标题
-     *
-     * @var string
-     */
-    public $title = null;
-
-    /**
-     * 数值内容
-     *
-     * @var string | number
-     */
-    public $value = null;
-
-    /**
-     * 设置数值的样式
-     *
-     * @var array
-     */
-    public $valueStyle = [];
+    public $smooth = true;
 
     /**
      * 初始化组件
      *
-     * @param  string  $title
-     * @param  string  $value
+     * @param  array  $data
      * @return void
      */
-    public function __construct($title = null,$value = null) {
-        $this->component = 'statistic';
-        $this->title = $title;
-        $this->value = $value;
+    public function __construct($data = null) {
+        $this->component = 'line';
+        $this->data = $data;
 
         return $this;
     }
 
     /**
-     * 设置小数点
+     * 是否平滑
      *
-     * @param  string  $decimalSeparator
+     * @param  bool  $smooth
      * @return $this
      */
-    public function decimalSeparator($decimalSeparator)
+    public function smooth($smooth)
     {
-        $this->decimalSeparator = $decimalSeparator;
-        return $this;
-    }
-
-    /**
-     * 设置千分位标识符
-     *
-     * @param  string  $groupSeparator
-     * @return $this
-     */
-    public function groupSeparator($groupSeparator)
-    {
-        $this->groupSeparator = $groupSeparator;
-        return $this;
-    }
-
-    /**
-     * 数值精度
-     *
-     * @param  string  $precision
-     * @return $this
-     */
-    public function precision($precision)
-    {
-        $this->precision = $precision;
-        return $this;
-    }
-
-    /**
-     * 设置数值的前缀
-     *
-     * @param  string|array  $prefix
-     * @return $this
-     */
-    public function prefix($prefix)
-    {
-        $this->prefix = $prefix;
-        return $this;
-    }
-
-    /**
-     * 设置数值的后缀
-     *
-     * @param  string|array  $suffix
-     * @return $this
-     */
-    public function suffix($suffix)
-    {
-        $this->suffix = $suffix;
-        return $this;
-    }
-
-    /**
-     * 设置标题
-     *
-     * @param  string  $title
-     * @return $this
-     */
-    public function title($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * 数值内容
-     *
-     * @param  string|number  $value
-     * @return $this
-     */
-    public function value($value)
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
-     * 设置数值的样式
-     *
-     * @param  array  $valueStyle
-     * @return $this
-     */
-    public function valueStyle($valueStyle)
-    {
-        $this->valueStyle = $valueStyle;
+        $this->smooth = $smooth;
         return $this;
     }
 
@@ -180,19 +45,11 @@ class Line extends Element
      */
     public function jsonSerialize()
     {
-        if(empty($this->key)) {
-            $this->key(json_encode($this->title), true);
-        }
+        // 设置组件唯一标识
+        $this->key();
 
         return array_merge([
-            'decimalSeparator' => $this->decimalSeparator,
-            'groupSeparator' => $this->groupSeparator,
-            'precision' => $this->precision,
-            'prefix' => $this->prefix,
-            'suffix' => $this->suffix,
-            'title' => $this->title,
-            'value' => $this->value,
-            'valueStyle' => $this->valueStyle,
+            'smooth' => $this->smooth
         ], parent::jsonSerialize());
     }
 }

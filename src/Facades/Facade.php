@@ -37,7 +37,9 @@ class Facade
         'lists' => \QuarkCMS\Quark\Component\Lists\Lists::class,
         'list' => \QuarkCMS\Quark\Component\Lists\Lists::class,
         'meta' => \QuarkCMS\Quark\Component\Lists\Meta::class,
-        'divider' => \QuarkCMS\Quark\Component\Divider\Divider::class
+        'divider' => \QuarkCMS\Quark\Component\Divider\Divider::class,
+        'chart' => \QuarkCMS\Quark\Component\Chart\Chart::class,
+        'line' => \QuarkCMS\Quark\Component\Chart\Line::class
     ];
 
     /**
