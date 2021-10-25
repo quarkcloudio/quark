@@ -91,6 +91,13 @@ abstract class Item extends Element
     public $yField = null;
 
     /**
+     * 通过 meta 可以全局化配置图表数据元信息，以字段为单位进行配置。在 meta 上的配置将同时影响所有组件的文本信息。传入以字段名为 key，MetaOption 为 value 的配置，同时设置多个字段的元信息。
+     *
+     * @var array
+     */
+    public $meta = [];
+
+    /**
      * 初始化组件
      *
      * @return void
@@ -247,6 +254,19 @@ abstract class Item extends Element
     }
     
     /**
+     * 通过 meta 可以全局化配置图表数据元信息，以字段为单位进行配置。在 meta 上的配置将同时影响所有组件的文本信息。传入以字段名为 key，MetaOption 为 value 的配置，同时设置多个字段的元信息。
+     *
+     * @param  array  $meta
+     * @return $this
+     */
+    public function meta($meta)
+    {
+        $this->meta = $meta;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -268,6 +288,7 @@ abstract class Item extends Element
             'xField' => $this->xField,
             'yField' => $this->yField,
             'data' => $this->data,
+            'meta' => $this->meta,
         ], parent::jsonSerialize());
     }
 }
