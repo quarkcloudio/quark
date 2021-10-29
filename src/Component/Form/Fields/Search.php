@@ -91,7 +91,6 @@ class Search extends Item
     public function mode($mode)
     {
         $this->mode = $mode;
-        $this->defaultValue = [];
         return $this;
     }
 
