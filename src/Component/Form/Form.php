@@ -120,11 +120,25 @@ class Form extends Element
     public $buttonWrapperCol = ['offset' => 3, 'span' => 21 ];
 
     /**
-     * 表格提交的地址
+     * 表单提交的地址
      *
      * @var string
      */
     public $api = null;
+
+    /**
+     * 表单提交的类型
+     *
+     * @var string
+     */
+    public $apiType = 'POST';
+
+    /**
+     * 提交表单的数据是否打开新页面，只有在GET类型的时候有效
+     *
+     * @var bool
+     */
+    public $targetBlank = false;
 
     /**
      * 获取表单数据
@@ -472,6 +486,32 @@ class Form extends Element
     }
 
     /**
+     *  表单提交接口的类型
+     *
+     * @param  string  $apiType
+     * @return $this
+     */
+    public function apiType($apiType)
+    {
+        $this->apiType = $apiType;
+
+        return $this;
+    }
+
+    /**
+     *  提交表单的数据是否打开新页面，只有在GET类型的时候有效
+     *
+     * @param  bool  $targetBlank
+     * @return $this
+     */
+    public function targetBlank($targetBlank = true)
+    {
+        $this->targetBlank = $targetBlank;
+
+        return $this;
+    }
+
+    /**
      *  获取表单数据
      *
      * @param  string  $initApi
@@ -609,6 +649,8 @@ class Form extends Element
 
         return array_merge([
             'api' => $this->api,
+            'apiType' => strtoupper($this->apiType),
+            'targetBlank' => $this->targetBlank,
             'initApi' => $this->initApi,
             'colon' => $this->colon,
             'initialValues' => $this->initialValues,
