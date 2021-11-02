@@ -70,6 +70,55 @@ class Search extends Element
     public $split = false;
 
     /**
+     * 是否显示提交按钮
+     *
+     * @var bool
+     */
+    public $showSubmitButton = true;
+
+    /**
+     * 是否显示重置按钮
+     *
+     * @var bool
+     */
+    public $showResetButton = true;
+
+    /**
+     * 是否显示导出按钮
+     *
+     * @var bool
+     */
+    public $showExportButton = false;
+
+    /**
+     * 重置按钮文字
+     *
+     * @var string
+     */
+    public $resetButton = '重置';
+
+    /**
+     * 提交按钮文字
+     *
+     * @var string
+     */
+    public $submitButton = '查询';
+
+    /**
+     * 导出按钮文字
+     *
+     * @var string
+     */
+    public $exportButton = '导出数据';
+
+    /**
+     * 导出数据接口
+     *
+     * @var string
+     */
+    public $exportApi = null;
+
+    /**
      * 表单项
      *
      * @var array
@@ -226,6 +275,97 @@ class Search extends Element
     }
 
     /**
+     * 是否显示提交按钮
+     *
+     * @param bool $showSubmitButton
+     * @return $this
+     */
+    public function showSubmitButton($showSubmitButton = true)
+    {
+        $this->showSubmitButton = $showSubmitButton;
+
+        return $this;
+    }
+
+    /**
+     * 是否显示重置按钮
+     *
+     * @param bool $showResetButton
+     * @return $this
+     */
+    public function showResetButton($showResetButton = true)
+    {
+        $this->showResetButton = $showResetButton;
+
+        return $this;
+    }
+
+    /**
+     * 是否显示导出按钮
+     *
+     * @param bool $showExportButton
+     * @return $this
+     */
+    public function showExportButton($showExportButton = true)
+    {
+        $this->showExportButton = $showExportButton;
+
+        return $this;
+    }
+
+    /**
+     * 提交按钮文字
+     *
+     * @param string $submitButton
+     * @return $this
+     */
+    public function submitButton($submitButton)
+    {
+        $this->submitButton = $submitButton;
+
+        return $this;
+    }
+
+    /**
+     * 重置按钮文字
+     *
+     * @param string $resetButton
+     * @return $this
+     */
+    public function resetButton($resetButton)
+    {
+        $this->resetButton = $resetButton;
+
+        return $this;
+    }
+
+    /**
+     * 导出按钮文字
+     *
+     * @param string $exportButton
+     * @return $this
+     */
+    public function exportButton($exportButton)
+    {
+        $this->exportButton = $exportButton;
+
+        return $this;
+    }
+
+    /**
+     * 导出数据接口
+     *
+     * @param string $exportApi
+     * @return $this
+     */
+    public function exportApi($exportApi)
+    {
+        $this->exportApi = $exportApi;
+
+        return $this;
+    }
+
+    /**
      * 查找注册的类
      *
      * @param string $method
@@ -285,6 +425,13 @@ class Search extends Element
             'labelWidth' => $this->labelWidth,
             'span' => $this->span,
             'split' => $this->split,
+            'showSubmitButton' => $this->showSubmitButton,
+            'showResetButton' => $this->showResetButton,
+            'showExportButton' => $this->showExportButton,
+            'submitButton' => $this->submitButton,
+            'resetButton' => $this->resetButton,
+            'exportButton' => $this->exportButton,
+            'exportApi' => $this->exportApi,
             'items' => $this->items
         ], parent::jsonSerialize());
     }
