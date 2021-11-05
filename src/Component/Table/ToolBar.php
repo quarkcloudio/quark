@@ -259,6 +259,7 @@ class ToolBar extends Element
             'subTitle' => $this->subTitle,
             'description' => $this->description,
             'multipleLine' => $this->multipleLine,
+            'menu' => $this->menu,
             'actions' => $this->actions
         ], parent::jsonSerialize());
     }
