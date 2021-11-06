@@ -145,6 +145,13 @@ class Table extends Element
     public $pagination = false;
 
     /**
+     * 是否轮询
+     *
+     * @var null|number
+     */
+    public $polling = null;
+
+    /**
      * 初始化容器
      *
      * @param  string  $name
@@ -418,6 +425,19 @@ class Table extends Element
     }
 
     /**
+     * 是否轮询
+     *
+     * @param  null|number  $polling
+     * @return $this
+     */
+    public function polling($polling)
+    {
+        $this->polling = $polling;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -448,7 +468,8 @@ class Table extends Element
             'scroll' => $this->scroll,
             'striped' => $this->striped,
             'datasource' => $this->datasource,
-            'pagination' => $this->pagination
+            'pagination' => $this->pagination,
+            'polling' => $this->polling
         ], parent::jsonSerialize());
     }
 }

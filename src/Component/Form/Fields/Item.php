@@ -214,11 +214,25 @@ class Item extends Element
     public $showOnCreation = true;
 
     /**
-     * 是否在编辑也展示
+     * 是否在编辑页展示
      *
      * @var \Closure|bool
      */
     public $showOnUpdate = true;
+
+    /**
+     * 是否为导出字段
+     *
+     * @var \Closure|bool
+     */
+    public $showOnExport = true;
+
+    /**
+     * 是否为导入字段
+     *
+     * @var \Closure|bool
+     */
+    public $showOnImport = true;
 
     /**
      * 初始化回调
@@ -788,6 +802,38 @@ class Item extends Element
     }
 
     /**
+     * Specify that the element should be hidden from the export file.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function hideWhenExporting($callback = true)
+    {
+        $this->showOnExport = is_callable($callback) ? function () use ($callback) {
+            return ! call_user_func_array($callback, func_get_args());
+        }
+        : ! $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the import file.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function hideWhenImporting($callback = true)
+    {
+        $this->showOnImport = is_callable($callback) ? function () use ($callback) {
+            return ! call_user_func_array($callback, func_get_args());
+        }
+        : ! $callback;
+
+        return $this;
+    }
+
+    /**
      * Specify that the element should be hidden from the index view.
      *
      * @param  \Closure|bool  $callback
@@ -840,6 +886,32 @@ class Item extends Element
     }
 
     /**
+     * Specify that the element should be hidden from the export file.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function showOnExporting($callback = true)
+    {
+        $this->showOnExport = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should be hidden from the import file.
+     *
+     * @param  \Closure|bool  $callback
+     * @return $this
+     */
+    public function showOnImporting($callback = true)
+    {
+        $this->showOnImport = $callback;
+
+        return $this;
+    }
+
+    /**
      * Specify that the element should only be shown on the index view.
      *
      * @return $this
@@ -850,6 +922,8 @@ class Item extends Element
         $this->showOnDetail = false;
         $this->showOnCreation = false;
         $this->showOnUpdate = false;
+        $this->showOnExport = false;
+        $this->showOnImport = false;
 
         return $this;
     }
@@ -865,6 +939,8 @@ class Item extends Element
         $this->showOnDetail = true;
         $this->showOnCreation = false;
         $this->showOnUpdate = false;
+        $this->showOnExport = false;
+        $this->showOnImport = false;
 
         return $this;
     }
@@ -880,6 +956,42 @@ class Item extends Element
         $this->showOnDetail = false;
         $this->showOnCreation = true;
         $this->showOnUpdate = true;
+        $this->showOnExport = false;
+        $this->showOnImport = false;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should only be shown on export file.
+     *
+     * @return $this
+     */
+    public function onlyOnExport()
+    {
+        $this->showOnIndex = false;
+        $this->showOnDetail = false;
+        $this->showOnCreation = false;
+        $this->showOnUpdate = false;
+        $this->showOnExport = true;
+        $this->showOnImport = false;
+
+        return $this;
+    }
+
+    /**
+     * Specify that the element should only be shown on import file.
+     *
+     * @return $this
+     */
+    public function onlyOnImport()
+    {
+        $this->showOnIndex = false;
+        $this->showOnDetail = false;
+        $this->showOnCreation = false;
+        $this->showOnUpdate = false;
+        $this->showOnExport = false;
+        $this->showOnImport = true;
 
         return $this;
     }
@@ -895,6 +1007,8 @@ class Item extends Element
         $this->showOnDetail = true;
         $this->showOnCreation = false;
         $this->showOnUpdate = false;
+        $this->showOnExport = true;
+        $this->showOnImport = true;
 
         return $this;
     }
@@ -938,6 +1052,26 @@ class Item extends Element
     public function isShownOnCreation(): bool
     {
         return $this->showOnCreation;
+    }
+
+    /**
+     * Check for showing when exporting.
+     *
+     * @return bool
+     */
+    public function isShownOnExport(): bool
+    {
+        return $this->showOnExport;
+    }
+
+    /**
+     * Check for showing when importing.
+     *
+     * @return bool
+     */
+    public function isShownOnImport(): bool
+    {
+        return $this->showOnImport;
     }
 
     /**
