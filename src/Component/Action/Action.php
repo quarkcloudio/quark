@@ -149,6 +149,13 @@ class Action extends Element
     public $reload;
 
     /**
+     * 是否具有loading
+     *
+     * @var bool
+     */
+    public $withLoading = false;
+
+    /**
      * 初始化容器
      *
      * @param  string  $label
@@ -430,6 +437,19 @@ class Action extends Element
     }
 
     /**
+     *  是否具有loading
+     *
+     * @param  bool  $loading
+     * @return $this
+     */
+    public function withLoading($loading = true)
+    {
+        $this->withLoading = $loading;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -460,7 +480,8 @@ class Action extends Element
             'confirmType' => $this->confirmType,
             'api' => $this->api,
             'reload' => $this->reload,
-            'submitForm' => $this->submitForm
+            'submitForm' => $this->submitForm,
+            'withLoading' => $this->withLoading
         ], parent::jsonSerialize());
     }
 }

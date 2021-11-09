@@ -122,6 +122,7 @@ abstract class Element implements JsonSerializable
     {
         return array_merge([
             'key' => $this->key,
+            'componentKey' => $this->key,
             'component' => $this->component(),
             'style' => $this->style
         ]);
