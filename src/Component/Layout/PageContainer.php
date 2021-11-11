@@ -334,7 +334,7 @@ class PageContainer extends Element
     public function jsonSerialize()
     {
         if(empty($this->key)) {
-            $this->key(json_encode($this->header).json_encode($this->tabList), true);
+            $this->key(json_encode($this->tabActiveKey).json_encode($this->tabList), true);
         }
 
         return array_merge([
