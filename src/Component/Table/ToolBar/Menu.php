@@ -133,6 +133,11 @@ class Menu extends Element
      */
     public function jsonSerialize()
     {
+        // 设置组件唯一标识
+        if(empty($this->key)) {
+            $this->key(__CLASS__.$this->type.$this->activeKey.json_encode($this->items), true);
+        }
+
         return array_merge([
             'type' => $this->type,
             'activeKey' => $this->activeKey,

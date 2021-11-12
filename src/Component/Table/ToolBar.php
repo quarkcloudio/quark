@@ -252,8 +252,11 @@ class ToolBar extends Element
      */
     public function jsonSerialize()
     {
-        $this->key();
-
+        // 设置组件唯一标识
+        if(empty($this->key)) {
+            $this->key(__CLASS__.$this->title.$this->subTitle.$this->description.$this->multipleLine.json_encode($this->menu).json_encode($this->actions), true);
+        }
+        
         return array_merge([
             'title' => $this->title,
             'subTitle' => $this->subTitle,

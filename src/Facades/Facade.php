@@ -15,6 +15,7 @@ class Facade
         'page' => \QuarkCMS\Quark\Component\Layout\Page::class,
         'pageContainer' => \QuarkCMS\Quark\Component\Layout\PageContainer::class,
         'layout' => \QuarkCMS\Quark\Component\Layout\Layout::class,
+        'footer' => \QuarkCMS\Quark\Component\Layout\Footer::class,
         'row' => \QuarkCMS\Quark\Component\Grid\Row::class,
         'col' => \QuarkCMS\Quark\Component\Grid\Col::class,
         'card' => \QuarkCMS\Quark\Component\Card\Card::class,

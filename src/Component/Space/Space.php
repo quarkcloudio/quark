@@ -155,7 +155,7 @@ class Space extends Element
     public function jsonSerialize()
     {
         if(empty($this->key)) {
-            $this->key(json_encode($this), true);
+            $this->key($this->align.$this->direction.$this->size.$this->split.$this->wrap, true);
         }
 
         return array_merge([

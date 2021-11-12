@@ -142,6 +142,13 @@ class Layout extends Element
     public $menu = null;
 
     /**
+     * 页脚
+     *
+     * @var array
+     */
+    public $footer = null;
+
+    /**
      * 内容
      *
      * @var number|string|object
@@ -430,6 +437,19 @@ class Layout extends Element
     }
 
     /**
+     * 页脚
+     *
+     * @param  array  $footer
+     * @return $this
+     */
+    public function footer($footer)
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
      * 内容
      *
      * @param  bool  $body
@@ -469,6 +489,7 @@ class Layout extends Element
             'siderWidth' => $this->siderWidth,
             'splitMenus' => $this->splitMenus,
             'menu' => $this->menu,
+            'footer' => $this->footer,
             'body' => $this->body
         ], parent::jsonSerialize());
     }
