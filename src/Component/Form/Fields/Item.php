@@ -4,6 +4,7 @@ namespace QuarkCMS\Quark\Component\Form\Fields;
 
 use QuarkCMS\Quark\Component\Element;
 use QuarkCMS\Quark\Component\Form\Form;
+use QuarkCMS\Quark\Facades\Column;
 use Exception;
 
 class Item extends Element
@@ -249,6 +250,13 @@ class Item extends Element
     public $editable = false;
 
     /**
+     * 透传表格列的属性
+     * 
+     * @var array
+     */
+    public $column;
+
+    /**
      * 初始化组件
      *
      * @param  string  $name
@@ -261,6 +269,7 @@ class Item extends Element
         $this->name = $name;
         $this->label = $label ? $label : $name;
         $this->callback = $callback;
+        $this->column = Column::make($this->name, $this->label);
     }
 
     /**
@@ -1085,6 +1094,59 @@ class Item extends Element
         $this->editable = $editable;
 
         return $this;
+    }
+
+    /**
+     * 透传表格列的属性
+     *
+     * @param  mixed  $callback
+     * @return void
+     */
+    public function column($callback)
+    {
+        $this->column = $callback($this->column);
+
+        return $this;
+    }
+
+    /**
+     * 表单属性转换为表格列的属性
+     *
+     * @return void
+     */
+    public function transformToColumn()
+    {
+        switch ($this->component) {
+            case 'textField':
+                $this->column->valueType('text');
+                break;
+
+            case 'selectField':
+                $this->column->valueType('select')->valueEnum($this->getValueEnum());
+                break;
+
+            case 'radioField':
+                $this->column->valueType('radio')->valueEnum($this->getValueEnum());
+                break;
+
+            case 'switchField':
+                $this->column->valueType('select')->valueEnum($this->getValueEnum());
+                break;
+
+            case 'imageField':
+                $this->column->valueType('image');
+                break;
+
+            default:
+                $this->column->valueType($this->component);
+                break;
+        }
+
+        if ($this->editable) {
+            $this->column->editable($this->component, $this->options ?? []);
+        }
+
+        return $this->column->render();
     }
 
     /**

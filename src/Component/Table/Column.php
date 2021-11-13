@@ -303,16 +303,20 @@ class Column extends Element
     /**
      * 表头的筛选菜单项，当值为 true 时，自动使用 valueEnum 生成
      *
-     * @param  array  $filters
+     * @param  array|bool  $filters
      * @return $this
      */
     public function filters($filters = [])
     {
-        $getFilters = [];
-        foreach ($filters as $key => $value) {
-            $filter['text'] = $value;
-            $filter['value'] = $key;
-            $getFilters[] = $filter;
+        if(is_bool($filters)) {
+            $getFilters = $columnFilters;
+        } else {
+            $getFilters = [];
+            foreach ($filters as $key => $value) {
+                $filter['text'] = $value;
+                $filter['value'] = $key;
+                $getFilters[] = $filter;
+            }
         }
 
         $this->filters = $getFilters;
