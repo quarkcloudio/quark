@@ -309,7 +309,7 @@ class Column extends Element
     public function filters($filters = [])
     {
         if(is_bool($filters)) {
-            $getFilters = $columnFilters;
+            $getFilters = $filters;
         } else {
             $getFilters = [];
             foreach ($filters as $key => $value) {
