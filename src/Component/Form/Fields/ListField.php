@@ -27,17 +27,35 @@ class ListField extends Item
      *
      * @var string
      */
-    public $button = '添加字段';
+    public $buttonText = '添加一行数据';
+
+    /**
+     * 按钮位置,top | bottom
+     *
+     * @var string
+     */
+    public $buttonPosition = 'top';
+
+    /**
+     * Item 中总是展示 label
+     *
+     * @var bool
+     */
+    public $alwaysShowItemLabel = true;
 
     /**
      * 按钮名称
      *
      * @param  string  $text
+     * @param  string  $position
+     * 
      * @return $this
      */
-    public function button($text)
+    public function button($text, $position = 'top')
     {
-        $this->button = $text;
+        $this->buttonText = $text;
+        $this->buttonPosition = $position;
+
         return $this;
     }
 
@@ -49,9 +67,21 @@ class ListField extends Item
      */
     public function item(Closure $callback = null)
     {
-        $form = new Form();
-        $callback($form);
-        $this->items = $form->items;
+        $this->items = $callback();
+
+        return $this;
+    }
+
+    /**
+     * Item 中总是展示 label
+     *
+     * @param  bool  $alwaysShowItemLabel
+     * 
+     * @return $this
+     */
+    public function alwaysShowItemLabel($alwaysShowItemLabel = true)
+    {
+        $this->alwaysShowItemLabel = $alwaysShowItemLabel;
 
         return $this;
     }
@@ -64,8 +94,10 @@ class ListField extends Item
     public function jsonSerialize()
     {
         return array_merge([
-            'button' => $this->button,
-            'items' => $this->items
+            'buttonText' => $this->buttonText,
+            'buttonPosition' => $this->buttonPosition,
+            'items' => $this->items,
+            'alwaysShowItemLabel' => $this->alwaysShowItemLabel
         ], parent::jsonSerialize());
     }
 }

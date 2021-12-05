@@ -41,6 +41,7 @@ class Field
         'cascader' => Fields\Cascader::class,
         'search' => Fields\Search::class,
         'list' => Fields\ListField::class,
+        'group' => Fields\Group::class,
     ];
 
     /**
