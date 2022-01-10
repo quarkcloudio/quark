@@ -285,6 +285,27 @@ class Form extends Element
         $data = $initialValues;
 
         foreach ($this->items as $item) {
+
+            if(!empty($item->when)) {
+                $whenItems = [];
+                foreach ($item->when['items'] as $when) {
+                    $body = $when['body'];
+                    if(is_array($body)) {
+                        $whenItems = array_merge($whenItems, $body);
+                    } elseif(is_object($body)) {
+                        $whenItems[] = $body;
+                    }
+                }
+
+                foreach ($whenItems as $whenKey => $whenItem) {
+                    $whenItemValue = $this->parseInitialValue($whenItem,$initialValues);
+
+                    if($whenItemValue !== null) {
+                        $data[$whenItem->name] = $whenItemValue;
+                    }
+                }
+            }
+
             $value = $this->parseInitialValue($item,$initialValues);
 
             if($value !== null) {
