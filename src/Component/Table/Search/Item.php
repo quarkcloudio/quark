@@ -43,6 +43,13 @@ class Item extends Element
     public $options = [];
 
     /**
+     * 级联菜单接口
+     *
+     * @var string
+     */
+    public $api = null;
+
+    /**
      * 校验规则，设置字段的校验逻辑
      *
      * @var string|array
@@ -207,6 +214,19 @@ class Item extends Element
     }
 
     /**
+     * 级联菜单接口
+     *
+     * @param string $api
+     * @return object
+     */
+    public function api($api)
+    {
+        $this->api = $api;
+
+        return $this;
+    }
+
+    /**
      * 输入框控件
      *
      * @param string $options
@@ -314,6 +334,29 @@ class Item extends Element
     }
 
     /**
+     * 级联菜单
+     *
+     * @param array $options
+     * @return object
+     */
+    public function cascader($options = [])
+    {
+        $this->component = 'cascader';
+
+        $data = [];
+        foreach ($options as $key => $value) {
+            $option['label'] = $value;
+            $option['value'] = $key;
+            $data[] = $option;
+        }
+
+        $this->options = $data;
+        $this->placeholder = '请选择' . $this->label;
+
+        return $this;
+    }
+
+    /**
      * 组件json序列化
      *
      * @return array
@@ -334,7 +377,8 @@ class Item extends Element
             'placeholder' => $this->placeholder,
             'operator' => $this->operator,
             'options' => $this->options,
-            'load' => $this->load
+            'load' => $this->load,
+            'api' => $this->api
         ], parent::jsonSerialize());
     }
 }
