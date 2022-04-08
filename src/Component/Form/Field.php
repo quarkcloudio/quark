@@ -42,6 +42,7 @@ class Field
         'search' => Fields\Search::class,
         'list' => Fields\ListField::class,
         'group' => Fields\Group::class,
+        'selects' => Fields\Selects::class,
     ];
 
     /**
