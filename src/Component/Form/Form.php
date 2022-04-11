@@ -316,7 +316,12 @@ class Form extends Element
         foreach ($data as $key => $value) {
             if(is_string($value)) {
                 if(count(explode('[',$value))>1 || count(explode('{',$value))>1) {
-                    $value = json_decode($value, true);
+                    $getValue = json_decode($value, true);
+                    if($getValue) {
+                        $value = $getValue;
+                    } else {
+                        $value = $value;
+                    }
                 }
             }
 
