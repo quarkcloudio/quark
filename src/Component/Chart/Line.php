@@ -14,6 +14,13 @@ class Line extends Item
     public $smooth = true;
 
     /**
+     * 分组字段。用于同时看一个维度中不同情况的指标需求。比如：我们看不同大区最近 30 天的销售额趋势情况，那么这里的大区字段就是 seriesField。
+     *
+     * @var string
+     */
+    public $seriesField = "";
+
+    /**
      * 初始化组件
      *
      * @param  array  $data
@@ -37,6 +44,18 @@ class Line extends Item
         $this->smooth = $smooth;
         return $this;
     }
+    
+    /**
+     * 分组字段。用于同时看一个维度中不同情况的指标需求。比如：我们看不同大区最近 30 天的销售额趋势情况，那么这里的大区字段就是 seriesField。
+     *
+     * @param  string  $seriesField
+     * @return $this
+     */
+    public function seriesField($seriesField)
+    {
+        $this->seriesField = $seriesField;
+        return $this;
+    }
 
     /**
      * 组件json序列化
@@ -49,7 +68,8 @@ class Line extends Item
         $this->key();
 
         return array_merge([
-            'smooth' => $this->smooth
+            'smooth' => $this->smooth,
+            'seriesField' => $this->seriesField
         ], parent::jsonSerialize());
     }
 }
