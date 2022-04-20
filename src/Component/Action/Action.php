@@ -40,6 +40,13 @@ class Action extends Element
     public $target;
 
     /**
+     * 执行的js语句
+     *
+     * @var string
+     */
+    public $js;
+
+    /**
      * 触发行为打开弹窗
      *
      * @var array
@@ -182,6 +189,19 @@ class Action extends Element
     }
 
     /**
+     * 执行的js语句
+     *
+     * @param  string  $js
+     * @return $this
+     */
+    public function js($js)
+    {
+        $this->js = $js;
+
+        return $this;
+    }
+
+    /**
      * 弹窗
      *
      * @param  Closure  $modal
@@ -293,6 +313,7 @@ class Action extends Element
             'actionType' => $this->actionType,
             'href' => $this->href,
             'target' => $this->target,
+            'js' => $this->js,
             'type' => $this->type,
             'modal' => $this->modal,
             'drawer' => $this->drawer,
