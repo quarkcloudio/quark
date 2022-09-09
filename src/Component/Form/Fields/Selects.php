@@ -2,10 +2,10 @@
 
 namespace QuarkCMS\Quark\Component\Form\Fields;
 
-use QuarkCMS\Quark\Component\Element;
+use QuarkCMS\Quark\Component\Form\Fields\Item;
 use Exception;
 
-class Selects extends Element
+class Selects extends Item
 {
     /**
      * 组件类型
